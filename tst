@@ -49,16 +49,32 @@ class Window(QtGui.QWidget):
 	def addItems(self, parent):
 		column = 0
 		channel_info = ['ARFCN','Frequency','CID','LAC','MCC','MNC','Power']
+		channel_item = []
 
 		for i in range(0, file_len()): 
 
 ######## Add TreeRoot
-			channel_item = self.addParent(parent, column, 'Channel ' + str(i), 'data Channel ')
+			channel_item.append(self.addParent(parent, column, 'Channel ' + str(i), 'data Channel '))
 
 ######## Add TreeBranches
 			for k in range(0, 7):
-				self.addChild(channel_item, column, channel_info[k], self.content[k + (i*7)])
+				item = self.addChild(channel_item[i], column, channel_info[k], self.content[k + (i*7)])
 				
+				if k==0:
+					item.setToolTip(column, "Absolute Radio Frequency Channel Number:\n\n" + self.content[k + (i*7)])
+				elif k==1:
+					item.setToolTip(column, "Frequency:\n\n" + self.content[k + (i*7)])
+				elif k==2:
+					item.setToolTip(column, "Cell Identification:\n\n" + self.content[k + (i*7)])
+				elif k==3:
+					item.setToolTip(column, "Location Area:\n\n" + self.content[k + (i*7)])
+				elif k==4:
+					item.setToolTip(column, "Mobile Country Code:\n\n" + self.content[k + (i*7)])
+				elif k==5:
+					item.setToolTip(column, "Mobile Network Code:\n\n01: Telekom Deutschland\n02: Vodafone\n03: Telefonica (ehem. E-Plus)")
+				elif k==6:
+					item.setToolTip(column, "Power:\n\n" + self.content[k + (i*7)])		
+
 			#self.addChild(channel_item, column, 'Frequency', 'data Frequency')
 			#self.addChild(channel_item, column, 'CID', 'data CID')
 			#self.addChild(channel_item, column, 'LAC', 'data LAC')
@@ -79,16 +95,16 @@ class Window(QtGui.QWidget):
 
    	def addChild(self, parent, column, title, data):
       	 	item = QtGui.QTreeWidgetItem(parent, [title])
-      	 	item.setData(column, 2, data)
+      	 	item.setData(column, 0, data)
 		item.setSelected (False)
         	return item
 
 	def handleChanged(self, item, column):
 		if item.isSelected():	
 			QtGui.QLabel.clear(self.text)
-			self.text = QtGui.QLabel("hello",self.right)#item.toolTip(column), self.right)
+			self.text = QtGui.QLabel(item.toolTip(column),self.right)
 			QtGui.QLabel.show(self.text)
-			print self.text
+			#print item.text(column)
 
 	def file_Content(self):	
 		with open(fname) as f:
@@ -98,7 +114,6 @@ class Window(QtGui.QWidget):
 		for i in range(0, len(content)):
 			content_temp = content_temp + str(content[i]).split(", ")
 		content = content_temp
-		#print content_temp
 		return content
 
 
