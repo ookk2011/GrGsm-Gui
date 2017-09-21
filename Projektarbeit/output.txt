@@ -1,6 +1,0 @@
-ARFCN: 1015, Freq:  933.2M, CID: 59458, LAC: 59061, MCC: 262, MNC:   3, Pwr: -38
-ARFCN: 1017, Freq:  933.6M, CID: 39458, LAC: 59061, MCC: 262, MNC:   3, Pwr: -46
-ARFCN: 1021, Freq:  934.4M, CID:     0, LAC:     0, MCC:   0, MNC:   0, Pwr: -28
-ARFCN:   37, Freq:  942.4M, CID:     0, LAC:  7260, MCC: 262, MNC:   2, Pwr: -26
-ARFCN:   66, Freq:  948.2M, CID: 27542, LAC: 21111, MCC: 262, MNC:   1, Pwr: -36
-ARFCN:   84, Freq:  951.8M, CID:     0, LAC: 17726, MCC: 262, MNC:   1, Pwr: -39
