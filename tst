@@ -71,7 +71,7 @@ class Window(QtGui.QWidget):
 				elif k==4:
 					item.setToolTip(column, "Mobile Country Code:\n\n" + self.content[k + (i*7)])
 				elif k==5:
-					item.setToolTip(column, "Mobile Network Code:\n\n01: Telekom Deutschland\n02: Vodafone\n03: Telefonica (ehem. E-Plus)")
+					item.setToolTip(column, "Mobile Network Code:\n\n" + self.content[k + (i*7)] + "\n\n01: Telekom Deutschland\n02: Vodafone\n03: Telefonica (ehem. E-Plus)")
 				elif k==6:
 					item.setToolTip(column, "Power:\n\n" + self.content[k + (i*7)])		
 
