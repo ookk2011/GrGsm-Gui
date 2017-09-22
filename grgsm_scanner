@@ -33,7 +33,7 @@ from PyQt4 import QtCore, QtGui
 from PyQt4.QtCore import QThread
 from PyQt4.QtCore import QTimer
 
-
+import threading
 import grgsm
 import numpy
 import os
@@ -90,6 +90,10 @@ class Window(QtGui.QWidget):
         	self.treeWidget.setHeaderHidden(True)
 		self.addItems(self.treeWidget.invisibleRootItem())
 		self.treeWidget.itemClicked.connect(self.handleChanged)
+		self.logView = QtGui.QTextEdit()
+		#self.button = QtGui.QPushButton('Test', self)
+		#self.button.clicked.connect()
+		#self.layout.addWidget(self.button)
 
 		self.text = QtGui.QLabel("", self.right)
 
@@ -100,6 +104,7 @@ class Window(QtGui.QWidget):
 		self.layout = QtGui.QVBoxLayout()
 		self.layout.addWidget(self.splitter1)
 		self.setLayout(self.layout)
+		
 
 		self.setGeometry(100, 100, 800, 480)
         	self.setWindowTitle('GrGsm')
@@ -464,6 +469,7 @@ class channel_info(object):
             self.arfcn, self.freq / 1e6, self.cid, self.lac, self.mcc, self.mnc, self.power)
 
 def do_scan(samp_rate, band, speed, ppm, gain, args, prn = None):
+    trigger = QtCore.pyqtSignal(object)
     signallist = []
     channels_num = int(samp_rate / 0.2e6)
     for arfcn_range in grgsm.arfcn.get_arfcn_ranges(band):
@@ -542,7 +548,7 @@ def do_scan(samp_rate, band, speed, ppm, gain, args, prn = None):
             current_freq += channels_num * 0.2e6
 	    
 	
-    flag = 0
+    self.trigger.emit("1")
     return signallist
 
 def argument_parser():
@@ -571,6 +577,7 @@ def argument_parser():
 
 class scan_Thread(QThread):
 
+
     def __init__(self, samp_rate, band, speed, ppm, gain, args, prn = None):
 
         QThread.__init__(self)
@@ -588,6 +595,8 @@ class scan_Thread(QThread):
     def run(self):
 	do_scan(self.samp_rate, self.band, self.speed,
                 self.ppm, self.gain, self.args, self.prn)
+	
+	
 
 def main(options = None):
 
@@ -624,26 +633,10 @@ def main(options = None):
           		options.ppm, options.gain, options.args, prn = printfunc)
     get_thread.start()
     
-    def __quit():
-	if 1:
-	    app.quit()
-    
-    timer = QtCore.QTimer()
-    timer.timeout.connect(__quit())
-    timer.start(1000)
-    
-    
-    try:
-	while get_thread.isRunning() :
-	
-	#time.sleep(5)
-	
-	    window = Window()
-	    window.show()
-	    app.processEvents()
-	    app.exec_()
-    finally:    
-	sys.exit(app.exec_())    
+    window = Window()
+    window.show()    
+    #app.processEvents()    
+    sys.exit(app.exec_())    
 
 if __name__ == '__main__':
 	main()
