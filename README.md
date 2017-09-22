@@ -1,6 +1,4 @@
 # GrGsm-Gui
 #
-# Im Terminal mit ./tst aufrufen
-# Erstellt Gui mit einem TreeWidget
-# Hinzuzufügen sind noch die Informationen der jeweiligen Komponenten
-#
+# Im Terminal mit ./sudo ./grgsm_scanner\ \(copy\) öffnen
+# Scannt und öffnet anschließend die GUI 
