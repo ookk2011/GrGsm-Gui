@@ -1,3 +1,11 @@
- 1015,   933.2M,  59458,  59061,  262,    3,  -38
- 1017,  933.6M,  39458,  59061,  262,    3,  -46
- 84,  951.8M,   0, 17726, 262,   1,  -39
+ARFCN:  988, Freq:  927.8M, CID: 46503, LAC:  1998, MCC: 262, MNC:   3, Pwr: -43
+ARFCN:  996, Freq:  929.4M, CID: 13043, LAC:  1998, MCC: 262, MNC:   3, Pwr: -45
+ARFCN:    8, Freq:  936.6M, CID: 48121, LAC:  7222, MCC: 262, MNC:   2, Pwr: -40
+ARFCN:   10, Freq:  937.0M, CID: 27273, LAC:  7222, MCC: 262, MNC:   2, Pwr: -42
+ARFCN:   19, Freq:  938.8M, CID: 48122, LAC:  7222, MCC: 262, MNC:   2, Pwr: -31
+ARFCN:   29, Freq:  940.8M, CID: 48122, LAC:  7222, MCC: 262, MNC:   2, Pwr: -27
+ARFCN:   34, Freq:  941.8M, CID: 14663, LAC:  7222, MCC: 262, MNC:   2, Pwr: -41
+ARFCN:   49, Freq:  944.8M, CID:     0, LAC:  7222, MCC: 262, MNC:   2, Pwr: -43
+ARFCN:   66, Freq:  948.2M, CID: 13016, LAC: 17677, MCC: 262, MNC:   1, Pwr: -41
+ARFCN:   75, Freq:  950.0M, CID: 13018, LAC: 17677, MCC: 262, MNC:   1, Pwr: -30
+ARFCN:   82, Freq:  951.4M, CID: 13017, LAC: 17677, MCC: 262, MNC:   1, Pwr: -29
