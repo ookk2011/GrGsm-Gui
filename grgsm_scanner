@@ -164,7 +164,7 @@ class Window(QtGui.QWidget):
 					item.setToolTip(column, "Mobile Country Code:\n\n" + Buffer_Channel.MCC)
 				elif k==5:
 					item.setToolTip(column, "Mobile Network Code:\n\n" + Buffer_Channel.MNC +
-							"\n\nLegende:\n01: Telekom Deutschland\n02: Vodafone\n03: Telefonica (ehem. E-Plus)\n07: Telefonica (ehem. O2)\n10: DB Telematic")
+							"\n\nLegende:\n01: Telekom Deutschland\n02: Vodafone\n03: Telefonica (ehem. E-Plus)\n10: DB Telematic")
 				elif k==6:
 					item.setToolTip(column, "Power:\n\n" + Buffer_Channel.PWR)		
 
@@ -559,11 +559,13 @@ class _do_scan(QtCore.QThread):
 		os.close(null_fds[1])
 		if prn:
 		    prn(found_list)
+		    ##############
+		    if found_list:
+			self.trigger.emit()	
+		    ##############		    
 		signallist.extend(found_list)
 		
-		##############
-		self.trigger.emit()	
-		##############
+
 		
 		current_freq += channels_num * 0.2e6
 		
