@@ -1,8 +1,3 @@
-ARFCN: 1006, Freq:  931.4M, CID:     0, LAC:  1998, MCC: 262, MNC:   3, Pwr: -31
-ARFCN:    8, Freq:  936.6M, CID: 48121, LAC:  7222, MCC: 262, MNC:   2, Pwr: -46
-ARFCN:   29, Freq:  940.8M, CID: 48122, LAC:  7222, MCC: 262, MNC:   2, Pwr: -35
+ARFCN: 1006, Freq:  931.4M, CID: 13033, LAC:  1998, MCC: 262, MNC:   3, Pwr: -30
+ARFCN:   29, Freq:  940.8M, CID: 48122, LAC:  7222, MCC: 262, MNC:   2, Pwr: -40
 ARFCN:   34, Freq:  941.8M, CID: 14663, LAC:  7222, MCC: 262, MNC:   2, Pwr: -37
-ARFCN:   49, Freq:  944.8M, CID: 13163, LAC:  7222, MCC: 262, MNC:   2, Pwr: -44
-ARFCN:   66, Freq:  948.2M, CID: 13016, LAC: 17677, MCC: 262, MNC:   1, Pwr: -44
-ARFCN:   75, Freq:  950.0M, CID: 13018, LAC: 17677, MCC: 262, MNC:   1, Pwr: -32
-ARFCN:   82, Freq:  951.4M, CID:     0, LAC: 17677, MCC: 262, MNC:   1, Pwr: -29

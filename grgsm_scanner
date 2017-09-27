@@ -85,6 +85,9 @@ class Window(QtGui.QWidget):
 		pal.setColor(QtGui.QPalette.Background, QtGui.QColor(255,255,255))
 		self.right.setPalette(pal)
 		self.right.setAutoFillBackground(True)
+		
+		newfont=QtGui.QFont("Times",10)
+		
 
 		self.treeWidget = QtGui.QTreeWidget()
         	self.treeWidget.setHeaderHidden(True)
@@ -95,9 +98,11 @@ class Window(QtGui.QWidget):
 		#self.button.clicked.connect()
 		#self.layout.addWidget(self.button)
 
-		self.text = QtGui.QLabel("GSM Scaner GUI\n\n"
-		                         "Projektarbeit unter Prof. Litzenburger im SoSe 2017\n\n"
-		                         "von Dennis Dette und Christian Kobiela"
+		self.text = QtGui.QLabel(" GSM Scanner GUI\n\n"
+		                         " Projektarbeit unter Prof. Litzenburger im SoSe 2017\n\n"
+		                         " von Dennis Dette und Christian Kobiela\n\n"
+		                         " Klick auf den Channel zeigt die Infos des BCCH an\n"
+		                         " Klick auf den Erweiterungspfeil zeigt weitere Erklaerungen zu den Infos"
 		                         , self.right)
 
 		self.splitter1 = QtGui.QSplitter(QtCore.Qt.Horizontal)
@@ -110,7 +115,7 @@ class Window(QtGui.QWidget):
 		
 
 		self.setGeometry(100, 100, 800, 480)
-        	self.setWindowTitle('GrGsm')
+        	self.setWindowTitle('GrGsm Scanner GUI')
 
 
 	def addItems(self, parent):
@@ -125,7 +130,7 @@ class Window(QtGui.QWidget):
 		    if self.content:
 
 ######## Add TreeRoot
-			parent_item = self.addParent(parent, column, "Channel " + str(i), "data Channel ")
+			parent_item = self.addParent(parent, column, "Channel " + str(i+1), "data Channel ")
 			channel_item.append(parent_item)
 
 			#QDesktopServices.openUrl(QUrl("google.de", QUrl.TolerantMode))
@@ -140,36 +145,38 @@ class Window(QtGui.QWidget):
 			                         self.content[5 + (i*7)], 
 			                         self.content[6 + (i*7)])
 
-			parent_item.setToolTip(column, 
-			                    "To locate BTS click here: \n\n" 
-						"http://find-cell.mylnikov.org/#" 
-			                        + Buffer_Channel.MCC + "," 
-			                        + Buffer_Channel.MNC + "," 
-			                        + Buffer_Channel.LAC + "," 
-			                        + Buffer_Channel.CID)
+			parent_item.setToolTip(column,"Channel " + str(i+1) +
+			                        " enthaellt folgende Informationen: \n\n"
+			                        + " " +Buffer_Channel.ARFCN + ", \n"
+			                        + " " +Buffer_Channel.FREQ + ", \n"
+			                        + " " +Buffer_Channel.LAC + ", \n" 
+			                        + " " +Buffer_Channel.MCC + ", \n" 
+			                        + " " +Buffer_Channel.MNC + ", \n"
+			                        + " " +Buffer_Channel.CID + ", \n"			                        
+			                        + " " +Buffer_Channel.PWR)
 
 ######## Add TreeBranches
 			for k in range(0, 7):
 				item = self.addChild(channel_item[i], column, channel_info[k], self.content[k + (i*7)])
 				
 				if k==0:
-					item.setToolTip(column, "Absolute Radio Frequency Channel Number:\n\n" + Buffer_Channel.ARFCN)
+					item.setToolTip(column, " Absolute Radio Frequency Channel Number:\n\n" + Buffer_Channel.ARFCN)
 				elif k==1:
-					item.setToolTip(column, "Frequency:\n\n" + Buffer_Channel.FREQ)
+					item.setToolTip(column, " Frequency:\n\n" + Buffer_Channel.FREQ)
 				elif k==2:
-					item.setToolTip(column, "Cell Identification:\n\n" + Buffer_Channel.CID)
+					item.setToolTip(column, " Cell Identification:\n\n" + Buffer_Channel.CID)
 				elif k==3:
-					item.setToolTip(column, "Location Area:\n\n" + Buffer_Channel.LAC)
+					item.setToolTip(column, " Location Area:\n\n" + Buffer_Channel.LAC)
 				elif k==4:
-					item.setToolTip(column, "Mobile Country Code:\n\n" + Buffer_Channel.MCC)
+					item.setToolTip(column, " Mobile Country Code:\n\n" + Buffer_Channel.MCC)
 				elif k==5:
-					item.setToolTip(column, "Mobile Network Code:\n\n" + Buffer_Channel.MNC +
-							"\n\nLegende:\n01: Telekom Deutschland\n02: Vodafone\n03: Telefonica (ehem. E-Plus)\n10: DB Telematic")
+					item.setToolTip(column, " Mobile Network Code:\n\n" + Buffer_Channel.MNC +
+							"\n\n Legende:\n 01: Telekom Deutschland\n 02: Vodafone\n 03: Telefonica (ehem. E-Plus)\n 10: DB Telematic")
 				elif k==6:
 					item.setToolTip(column, "Power:\n\n" + Buffer_Channel.PWR)		
 
 			i += 1
-
+			
 
     	def addParent(self, parent, column, title, data):
         	item = QtGui.QTreeWidgetItem(parent, [title])
@@ -621,8 +628,10 @@ def argument_parser():
 	
 
 def main(options = None):
-
+    
+    newFont=QtGui.QFont("Times", 13 )
     app = QtGui.QApplication(sys.argv)
+    app.setFont(newFont)
 
     if options is None:
         (options, args) = argument_parser().parse_args()
@@ -667,7 +676,7 @@ def main(options = None):
 	
     window = Window()
     window.show() 	
-    app.exec_()     
+    sys.exit(app.exec_())     
 
 
 if __name__ == '__main__':
