@@ -666,10 +666,10 @@ def main(options = None):
     
     scan_thread.trigger.connect(lambda: app.quit())
     
-    #while scan_thread.isRunning():
+    while scan_thread.isRunning():
 	##window = Window()
-	#window.show() 	
-	#app.exec_()
+	window.show() 	
+	app.exec_()
 	
     #window = Window()
     window.show() 	
