@@ -76,8 +76,6 @@ class Window(QtGui.QWidget):
 	def __init__(self):
 	        QtGui.QWidget.__init__(self)
 
-		self.content = self.file_Content()
-
 		self.right = QtGui.QFrame()
 		self.right.setFrameShape(QtGui.QFrame.StyledPanel)
 
@@ -118,34 +116,31 @@ class Window(QtGui.QWidget):
         	self.setWindowTitle('GrGsm Scanner GUI')
 
 
-	def addItems(self, parent):
+	def addItems(self, parent, info=""):
+		content = self.file_Content(info)
 		
 		column = 0
 		channel_info = ['ARFCN','Frequency','CID','LAC','MCC','MNC','Power']
 		channel_item = []
-
-
-		for i in range(0, file_len()): 
 		    
-		    if self.content:
+		if content:
 
 ######## Add TreeRoot
-			parent_item = self.addParent(parent, column, "Channel " + str(i+1), "data Channel ")
-			channel_item.append(parent_item)
+		        Buffer_Channel = Channel(content[0 ], 
+		                                 content[1 ], 
+		                                 content[2 ], 
+		                                 content[3 ],
+		                                 content[4 ], 
+		                                 content[5 ], 
+		                                 content[6 ])
 
-			#QDesktopServices.openUrl(QUrl("google.de", QUrl.TolerantMode))
-			
-		    
-			
-			Buffer_Channel = Channel(self.content[0 + (i*7)], 
-			                         self.content[1 + (i*7)], 
-			                         self.content[2 + (i*7)], 
-			                         self.content[3 + (i*7)],
-						 self.content[4 + (i*7)], 
-			                         self.content[5 + (i*7)], 
-			                         self.content[6 + (i*7)])
+			parent_item = self.addParent(parent, column, "Channel "
+			                             + content[0] ,
+			                             "data Channel ")
+			channel_item.append(parent_item)  
 
-			parent_item.setToolTip(column,"Channel " + str(i+1) +
+
+			parent_item.setToolTip(column,"Channel " +
 			                        " enthaellt folgende Informationen: \n\n"
 			                        + " " +Buffer_Channel.ARFCN + ", \n"
 			                        + " " +Buffer_Channel.FREQ + ", \n"
@@ -157,7 +152,7 @@ class Window(QtGui.QWidget):
 
 ######## Add TreeBranches
 			for k in range(0, 7):
-				item = self.addChild(channel_item[i], column, channel_info[k], self.content[k + (i*7)])
+				item = self.addChild(parent_item, column, channel_info[k], content[k])
 				
 				if k==0:
 					item.setToolTip(column, " Absolute Radio Frequency Channel Number:\n\n" + Buffer_Channel.ARFCN)
@@ -175,7 +170,7 @@ class Window(QtGui.QWidget):
 				elif k==6:
 					item.setToolTip(column, "Power:\n\n" + Buffer_Channel.PWR)		
 
-			i += 1
+			self.treeWidget.addTopLevelItem(item)
 			
 
     	def addParent(self, parent, column, title, data):
@@ -198,14 +193,12 @@ class Window(QtGui.QWidget):
 			QtGui.QLabel.show(self.text)
 			#print item.text(column)
 
-	def file_Content(self):	
-		with open(fname) as f:
-    			content = f.readlines()
-		content = [x.strip("\n") for x in content] 
-		content_temp = []
-		for i in range(0, len(content)):
-			content_temp = content_temp + str(content[i]).split(", ")
-		content = content_temp
+	def file_Content(self, info):	
+		content = str(info)
+		if content:
+		    content_temp = []
+		    content_temp = content_temp + str(content).split(", ")
+		    content = content_temp
 		return content
 
 
@@ -632,6 +625,8 @@ def main(options = None):
     newFont=QtGui.QFont("Times", 13 )
     app = QtGui.QApplication(sys.argv)
     app.setFont(newFont)
+    
+    window = Window()
 
     if options is None:
         (options, args) = argument_parser().parse_args()
@@ -652,6 +647,8 @@ def main(options = None):
 	    with open("output.txt", "a") as myfile:
 	    	myfile.write(str(info) + "\n")
 		myfile.close()
+		
+	    window.addItems(window.treeWidget.invisibleRootItem(), info)
 	    #############
 	    	
             if options.verbose:
@@ -669,12 +666,12 @@ def main(options = None):
     
     scan_thread.trigger.connect(lambda: app.quit())
     
-    while scan_thread.isRunning():
-	window = Window()
-	window.show() 	
-	app.exec_()
+    #while scan_thread.isRunning():
+	##window = Window()
+	#window.show() 	
+	#app.exec_()
 	
-    window = Window()
+    #window = Window()
     window.show() 	
     sys.exit(app.exec_())     
 
