@@ -141,7 +141,7 @@ class Window(QtGui.QWidget):
 
 
 			parent_item.setToolTip(column,"Channel " +
-			                        " enthaellt folgende Informationen: \n\n"
+			                        " enthaelt folgende Informationen: \n\n"
 			                        + " " +Buffer_Channel.ARFCN + ", \n"
 			                        + " " +Buffer_Channel.FREQ + ", \n"
 			                        + " " +Buffer_Channel.LAC + ", \n" 
