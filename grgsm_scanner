@@ -98,8 +98,11 @@ class Window(QtGui.QWidget):
 		#self.layout.addWidget(self.button)
 
 		self.text = QtGui.QLabel("\n"
-		                         " GrGsm Scanner GUI\n\n"
-		                         " Projektarbeit unter Prof. Litzenburger im SoSe 2017\n\n"
+		                         " \t\t   GrGsm Scanner GUI\n\n\n"
+		                         " Mit Hilfe der GNURADIO Bloecke \"GrGsm\" von Piotr Krysik\n"
+		                         " wird der BCCH umliegender GSM BTS ausgelesen und dargestellt\n\n"
+		                         " Ein Klick auf den gewuenschten Kanal links zeigt die Parameter an\n\n\n\n\n\n\n\n\n\n\n\n"
+		                         " Projektarbeit unter Prof. Litzenburger im SoSe 2017\n"
 		                         " von Dennis Dette und Christian Kobiela\n\n"
 		                         , self.right)
 
@@ -123,17 +126,13 @@ class Window(QtGui.QWidget):
 	                        "--- DONE! --- ")
 	    
 	def find_host(self, MNC):
-	    content = str(MNC)
-	    #if content:
-		#content_temp = []
-		#content_temp = content_temp + str(content).split(": ")
-		#content = content_temp
-		
+	    content = str(MNC)		
 	    if " 1" in content : return "Telekom Deutschland"
 	    elif " 2" in content : return "Vodafone"
 	    elif " 3" in content : return "Telefonica (ehem. E-Plus)"
 	    elif "10" in content: return "DB Telematic"
 	    else: return "Unknown"
+	    
 	
 	def find_country(self, MCC):
 	    temp = []
@@ -147,9 +146,6 @@ class Window(QtGui.QWidget):
 			fp.close()
 			return line[5:]	    
 	    
-	
-
-
 
 	def addItems(self, parent, info=""):
 		content = self.file_Content(info)
@@ -180,7 +176,7 @@ class Window(QtGui.QWidget):
 			parent_item.setToolTip(column,"Der Kanal mit der " + Buffer_Channel.ARFCN +
 			                        " enthaelt folgende Informationen: \n\n"
 			                        + " " +Buffer_Channel.ARFCN + " \t\tAbsolute Radio Frequency Chan. No.\n"
-			                        + " " +Buffer_Channel.FREQ + " \t\tFrequency\n"
+			                        + " " +Buffer_Channel.FREQ + " \t\tFrequency in Mhz\n"
 			                        + " " +Buffer_Channel.LAC + " \t\tLocation Area Code\n"
 			                        + " " +Buffer_Channel.MCC + " \t\tMobile Country Code\n" 
 			                        + " " +Buffer_Channel.MNC + " \t\tMobile Network Code\n"
@@ -201,7 +197,7 @@ class Window(QtGui.QWidget):
 				elif k==2:
 					item.setToolTip(column, " Cell Identification:\n\n" + Buffer_Channel.CID)
 				elif k==3:
-					item.setToolTip(column, " Location Area:\n\n" + Buffer_Channel.LAC)
+					item.setToolTip(column, " Location Area Code:\n\n" + Buffer_Channel.LAC)
 				elif k==4:
 					item.setToolTip(column, " Mobile Country Code:\n\n" + Buffer_Channel.MCC)
 				elif k==5:
