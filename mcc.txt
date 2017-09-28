@@ -1,0 +1,235 @@
+202 	Griechenland
+204 	Niederlande
+206 	Belgien
+208 	Frankreich
+208 	Monaco
+212 	Kosovo
+213 	Andorra
+214 	Spanien
+216 	Ungarn
+218 	Bosnien und Herzegowina
+219 	Kroatien
+220 	Serbien
+222 	Italien
+225 	Vatikanstadt
+226 	Rumänien
+228 	Schweiz
+230 	Tschechien
+231 	Slowakei
+232 	Österreich
+234 	Vereinigtes Königreich
+235 	Vereinigtes Königreich
+238 	Dänemark
+240 	Schweden
+242 	Norwegen
+244 	Finnland
+246 	Litauen
+247 	Lettland
+248 	Estland
+250 	Russland
+255 	Ukraine
+257 	Weißrussland
+259 	Moldawien
+260 	Polen
+262 	Deutschland
+266 	Gibraltar
+268 	Portugal
+270 	Luxemburg
+272 	Irland
+274 	Island
+276 	Albanien
+278 	Malta
+280 	Zypern
+282 	Georgien
+283 	Armenien
+284 	Bulgarien
+286 	Türkei
+288 	Färöer
+290 	Grönland
+292 	San Marino
+293 	Slowenien
+294 	Mazedonien
+295 	Liechtenstein
+297 	Montenegro
+302 	Kanada
+308 	Saint-Pierre und Miquelon
+310 	USA
+311 	USA
+312 	USA
+313 	USA
+314 	USA
+315 	USA
+316 	USA
+330 	Puerto Rico
+332 	Amerikanische Jungferninseln
+334 	Mexiko
+338 	Jamaika
+340 	Guadeloupe
+340 	Martinique
+342 	Barbados
+344 	Antigua und Barbuda
+346 	Kaimaninseln
+348 	Britische Jungferninseln
+350 	Bermuda
+352 	Grenada
+354 	Montserrat
+356 	St. Kitts und Nevis
+358 	St. Lucia
+360 	St. Vincent und die Grenadinen
+362 	Niederländische Antillen
+363 	Aruba
+364 	Bahamas
+365 	Anguilla
+366 	Dominica
+368 	Kuba
+370 	Dominikanische Republik
+372 	Haiti
+374 	Trinidad und Tobago
+376 	Turks- und Caicosinseln
+400 	Aserbaidschan
+401 	Kasachstan
+402 	Bhutan
+404 	Indien
+405 	Indien
+410 	Pakistan
+412 	Afghanistan
+413 	Sri Lanka
+414 	Myanmar
+415 	Libanon
+416 	Jordanien
+417 	Syrien
+418 	Irak
+419 	Kuwait
+420 	Saudi-Arabien
+421 	Jemen
+422 	Oman
+424 	Vereinigte Arabische Emirate
+425 	Israel
+426 	Bahrein
+427 	Katar
+428 	Mongolei
+429 	Nepal
+430 	Vereinigte Arabische Emirate
+431 	Vereinigte Arabische Emirate
+432 	Iran
+434 	Usbekistan
+436 	Tadschikistan
+437 	Kirgisistan
+438 	Turkmenistan
+440 	Japan
+441 	Japan
+450 	Südkorea
+452 	Vietnam
+454 	Hong Kong
+455 	Macao
+456 	Kambodscha
+457 	Laos
+460 	China
+461 	China
+466 	Taiwan
+467 	Nordkorea
+470 	Bangladesch
+472 	Malediven
+502 	Malaysia
+505 	Australien
+510 	Indonesien
+514 	Osttimor
+515 	Philippinen
+520 	Thailand
+525 	Singapur
+528 	Brunei
+530 	Neuseeland
+534 	Nördliche Marianen
+535 	Guam
+536 	Nauru
+537 	Papua-Neuguinea
+539 	Tonga
+540 	Salomonen
+541 	Vanuatu
+542 	Fidschi
+543 	Wallis und Futuna
+544 	Amerikanisch-Samoa
+545 	Kiribati
+546 	Neukaledonien
+547 	Französisch-Polynesien
+548 	Cookinseln
+549 	Samoa
+550 	Föderierte Staaten von Mikronesien
+551 	Marshallinseln
+552 	Palau
+602 	Ägypten
+603 	Algerien
+604 	Marokko
+605 	Tunesien
+606 	Libyen
+607 	Gambia
+608 	Senegal
+609 	Mauretanien
+610 	Mali
+611 	Guinea
+612 	Elfenbeinküste
+613 	Burkina Faso
+614 	Niger
+615 	Togo
+616 	Benin
+617 	Mauritius
+618 	Liberia
+619 	Sierra Leone
+620 	Ghana
+621 	Nigeria
+622 	Tschad
+623 	Zentralafrikanische Republik
+624 	Kamerun
+625 	Kap Verde
+626 	São Tomé und Príncipe
+627 	Äquatorialguinea
+628 	Gabun
+629 	Republik Kongo
+630 	Demokratische Republik Kongo
+631 	Angola
+632 	Guinea-Bissau
+633 	Seychellen
+634 	Sudan
+635 	Ruanda
+636 	Äthiopien
+637 	Somalia
+638 	Dschibuti
+639 	Kenia
+640 	Tansania
+641 	Uganda
+642 	Burundi
+643 	Mosambik
+645 	Sambia
+646 	Madagaskar
+647 	Réunion
+648 	Simbabwe
+649 	Namibia
+650 	Malawi
+651 	Lesotho
+652 	Botswana
+653 	Swasiland
+654 	Komoren
+655 	Südafrika
+657 	Eritrea
+702 	Belize
+704 	Guatemala
+706 	El Salvador
+708 	Honduras
+710 	Nicaragua
+712 	Costa Rica
+714 	Panama
+716 	Peru
+722 	Argentinien
+724 	Brasilien
+730 	Chile
+732 	Kolumbien
+734 	Venezuela
+736 	Bolivien
+738 	Guyana
+740 	Ecuador
+742 	Französisch-Guayana
+744 	Paraguay
+746 	Suriname
+748 	Uruguay
+001 	Testnetze
+901 	Weltweit

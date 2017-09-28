@@ -42,6 +42,7 @@ import pmt
 import time
 import sys
 import math
+import re
 
 
 
@@ -100,8 +101,6 @@ class Window(QtGui.QWidget):
 		                         " GrGsm Scanner GUI\n\n"
 		                         " Projektarbeit unter Prof. Litzenburger im SoSe 2017\n\n"
 		                         " von Dennis Dette und Christian Kobiela\n\n"
-		                         " Klick auf den Channel zeigt die Infos des BCCH an\n"
-		                         " Klick auf den Erweiterungspfeil zeigt weitere Erklaerungen zu den Infos"
 		                         , self.right)
 
 		self.splitter1 = QtGui.QSplitter(QtCore.Qt.Horizontal)
@@ -122,6 +121,34 @@ class Window(QtGui.QWidget):
 	    self.setWindowTitle("GrGsm Scanner GUI"
 	                        "                                         "
 	                        "--- DONE! --- ")
+	    
+	def find_host(self, MNC):
+	    content = str(MNC)
+	    #if content:
+		#content_temp = []
+		#content_temp = content_temp + str(content).split(": ")
+		#content = content_temp
+		
+	    if " 1" in content : return "Telekom Deutschland"
+	    elif " 2" in content : return "Vodafone"
+	    elif " 3" in content : return "Telefonica (ehem. E-Plus)"
+	    elif "10" in content: return "DB Telematic"
+	    else: return "Unknown"
+	
+	def find_country(self, MCC):
+	    temp = []
+	    temp = temp + str(MCC).split(": ")
+	    MCC = temp
+	    if "262" in MCC[1]:
+		return "Deutschland\n"
+	    with open('mcc.txt', 'r') as fp:
+		for line in fp:
+		    if MCC[1] in line:
+			fp.close()
+			return line[5:]	    
+	    
+	
+
 
 
 	def addItems(self, parent, info=""):
@@ -142,21 +169,26 @@ class Window(QtGui.QWidget):
 		                                 content[5 ], 
 		                                 content[6 ])
 
-			parent_item = self.addParent(parent, column, "Channel "
+			parent_item = self.addParent(parent, column, "Chan. "
 			                             + content[0] ,
 			                             "data Channel ")
 			channel_item.append(parent_item)  
+			
+			Betreiber = self.find_host(Buffer_Channel.MNC)
+			Land = self.find_country(Buffer_Channel.MCC)
 
-
-			parent_item.setToolTip(column,"Der Channel mit der " + Buffer_Channel.ARFCN +
+			parent_item.setToolTip(column,"Der Kanal mit der " + Buffer_Channel.ARFCN +
 			                        " enthaelt folgende Informationen: \n\n"
-			                        + " " +Buffer_Channel.ARFCN + ", \n"
-			                        + " " +Buffer_Channel.FREQ + ", \n"
-			                        + " " +Buffer_Channel.LAC + ", \n" 
-			                        + " " +Buffer_Channel.MCC + ", \n" 
-			                        + " " +Buffer_Channel.MNC + ", \n"
-			                        + " " +Buffer_Channel.CID + ", \n"			                        
-			                        + " " +Buffer_Channel.PWR)
+			                        + " " +Buffer_Channel.ARFCN + " \t\tAbsolute Radio Frequency Chan. No.\n"
+			                        + " " +Buffer_Channel.FREQ + " \t\tFrequency\n"
+			                        + " " +Buffer_Channel.LAC + " \t\tLocation Area Code\n"
+			                        + " " +Buffer_Channel.MCC + " \t\tMobile Country Code\n" 
+			                        + " " +Buffer_Channel.MNC + " \t\tMobile Network Code\n"
+			                        + " " +Buffer_Channel.CID + " \t\tCell Identification\n"			                        
+			                        + " " +Buffer_Channel.PWR+ " \t\tPower\n\n\n"
+			                        + " Laut " + Buffer_Channel.MNC + " ist der Betreiber " + Betreiber
+			                        + "\n Laut " + Buffer_Channel.MCC + " steht die BTS in " + Land
+			                        )
 
 ######## Add TreeBranches
 			for k in range(0, 7):
