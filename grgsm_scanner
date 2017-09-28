@@ -96,7 +96,8 @@ class Window(QtGui.QWidget):
 		#self.button.clicked.connect()
 		#self.layout.addWidget(self.button)
 
-		self.text = QtGui.QLabel(" GSM Scanner GUI\n\n"
+		self.text = QtGui.QLabel("\n"
+		                         " GrGsm Scanner GUI\n\n"
 		                         " Projektarbeit unter Prof. Litzenburger im SoSe 2017\n\n"
 		                         " von Dennis Dette und Christian Kobiela\n\n"
 		                         " Klick auf den Channel zeigt die Infos des BCCH an\n"
@@ -113,7 +114,14 @@ class Window(QtGui.QWidget):
 		
 
 		self.setGeometry(100, 100, 800, 480)
-        	self.setWindowTitle('GrGsm Scanner GUI')
+        	self.setWindowTitle("GrGsm Scanner GUI"
+		                    "                                         "
+		                    "- searching for GSM BTS - ")
+		
+	def changeTitle(self):
+	    self.setWindowTitle("GrGsm Scanner GUI"
+	                        "                                         "
+	                        "--- DONE! --- ")
 
 
 	def addItems(self, parent, info=""):
@@ -140,7 +148,7 @@ class Window(QtGui.QWidget):
 			channel_item.append(parent_item)  
 
 
-			parent_item.setToolTip(column,"Channel " +
+			parent_item.setToolTip(column,"Der Channel mit der " + Buffer_Channel.ARFCN +
 			                        " enthaelt folgende Informationen: \n\n"
 			                        + " " +Buffer_Channel.ARFCN + ", \n"
 			                        + " " +Buffer_Channel.FREQ + ", \n"
@@ -559,10 +567,7 @@ class _do_scan(QtCore.QThread):
 		os.close(null_fds[1])
 		if prn:
 		    prn(found_list)
-		    ##############
-		    if found_list:
-			self.trigger.emit()	
-		    ##############		    
+		    
 		signallist.extend(found_list)
 		
 
@@ -570,7 +575,7 @@ class _do_scan(QtCore.QThread):
 		current_freq += channels_num * 0.2e6
 		
 	    
-	
+	self.trigger.emit()
 	return signallist
 
 def argument_parser():
@@ -664,12 +669,13 @@ def main(options = None):
    
     #app.processEvents()  
     
-    scan_thread.trigger.connect(lambda: app.quit())
+    scan_thread.trigger.connect(lambda:  
+                                window.changeTitle())
     
     while scan_thread.isRunning():
-	##window = Window()
+	###window = Window()
 	window.show() 	
-	app.exec_()
+	sys.exit(app.exec_())
 	
     #window = Window()
     window.show() 	
