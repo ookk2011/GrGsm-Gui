@@ -1,9 +1,0 @@
-#! /bin/bash
-
-#testing
-
-grgsm_scanner
-
-./tst
-
-
