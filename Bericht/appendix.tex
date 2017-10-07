@@ -1,0 +1,274 @@
+%###########################################################################
+%
+%   Anhang
+%
+%###########################################################################
+\appendix
+\clearpage
+\markboth{ANHANG}{ANHANG}
+\chapter*{Anhang}
+\setcounter{chapter}{1}
+\addcontentsline{toc}{chapter}{Anhang}
+% Messprotokol der Initialmessung, entweder als pdf oder rüberkopieren.
+\section{Messungen am iBR (29. Oktober 2015)}
+\label{sec:initial-messprotokoll}
+
+Die Leistungsfähigkeit der aktuellen Implementierung der Trajektoriengenerierung soll getestet werden. Schwachstellen des verwendeten Algorithmus sollen aufgezeigt werden. Am Ende der Arbeit werden die selben Messungen wiederholt, um eine Verbesserung nachzuweisen.
+
+\subsubsection{Messung 1: Beschleunigung und Strompeaks bei Radiussprüngen}
+\label{messung-1-beschleunigung-und-strompeaks-bei-radiussprungen}
+
+\paragraph{Experimentablauf:}
+\label{experimentablauf}
+
+Die Figur 8 wird abgefahren. Dabei enstehen Sprünge in den kommandierten Geschwindigkeiten des linken und des rechten Rades. Dies führt zu Peaks in den Strömen und in der Beschleunigung. Diese sollen aufgezeichnet werden.
+
+Max Acceleration varieiren (Speed Control Max Acceleration 0.05, 0.1, 1.0)
+
+\paragraph{Eingangsgrößen:}
+\label{eingangsgroen}
+
+Zur Generierung der Fahrbefehle wird das iBR-Testskript verwendet. Für die Acht wir das Szenario \emph{eight} verwendet. Die Folgende Tabelle fasst die verwendeten Parametersätze zusammen.
+\begin{table}[ht]
+\caption{Parameter für die Figur-Acht-Testbahnen}
+\centering
+\begin{tabular}[c]{@{}cc@{}}
+\toprule
+Geradenlänge & Öffnungswinkel \\
+\midrule
+1.0 m & \ang{10} \\
+1.0 m & \ang{20}\\
+1.0 m & \ang{30}\\
+1.0 m & \ang{40}\\
+\bottomrule
+\end{tabular}
+\label{tab:parameters-eight-path-test}
+\end{table}
+
+\paragraph{Messgrößen:}
+\label{messgroen}
+
+Folgende Signalle sollen aufgezeichnet werden:
+
+\begin{itemize}
+\item  Kommadierte Geschwindigkeit links und rechts
+\item  Target Speed SP, Speed SP, Speed PV
+\item  Strom linker und rechter Motor Drive Current SP
+\item  Idelle Pose aus kommandierten Geschwindigkeiten
+\item  Pose aus Odometrie (Dead Reck)
+\item  Zeit
+\end{itemize}
+
+\subsubsection{Messung 2: Abweichung der Odometrie}
+\label{messung-2-abweichung-der-odometrie}
+
+Die Ruckartigen Änderungen des Sollgeschwindigkeite können zu einer Verschlechterung der Odometrie führen, da das Durchrutschen der Räder durch diese Art der Ansteuerung begünstigt wird. Dies soll durch das zweite Experiment untersucht werden.
+
+\paragraph{Experimentablauf:}
+\label{experimentablauf-1}
+
+Eine lange Sequenz aus Bewegungsbefehlen soll abgefahren werden. Die absolute Position des Roboters wird dabei auf zwei Arten gemessen. Zum einen intern durch die Odometrie, zum anderen durch die RoboStation, die als Referenzgröße gilt. Der Drift zwischen den beiden Messungen soll untersucht werden.
+
+\paragraph{Eingangsgrößen:}
+\label{eingangsgroen-1}
+
+Lange Sequenz aus MotionItems mit möglichst vielen Radiensprüngen.
+
+\paragraph{Messgrößen:}
+\label{messgroen-1}
+
+Folgende Signalle sollen aufgezeichnet werden:
+
+\begin{itemize}
+\item  Pose aus der Odometrie (x, y, psi)
+\item  Pose aus Ideal Vehicle (x, y, psi)
+\item  Pose aus der RoboStation (x, y, psi)
+\item  Zeit
+\end{itemize}
+
+\section{Verwendete Testbahnen}
+Bei der simulativen und der experemintellen Validierung der Algorithmen in dieser Arbeit wurden verschiedene Testbahnen verwendet. Nachfolgend sind die Folgen aus \textit{Motion Items} zusammengefasst, die für ihre Erzeugung verwendet wurden. 
+
+\begin{table}[htbp]
+\caption{\textit{Motion Items} zur Beschreibung der Figur Acht}
+\centering
+\begin{tabular}{@{}lll@{}} \toprule
+    $v$ [\si{m/s}] & $\omega$ [\si{1/s}]& $t$ [\si{s}]  \\ \midrule
+    3.0 & 0.0 & 1.0 \\ 
+    2.09631805918 & -3.83972435439 & 1.0 \\ 
+    3.0 & 0.0 & 1.0 \\ 
+    2.09631805918 & 3.83972435439 & 1.0 \\ \bottomrule
+\end{tabular}
+\label{tab:simu-motion-items}
+\end{table}
+
+\begin{table}[htbp]
+\caption{Erfolgreiche Glättung durch die Linearisierungsmethode}
+\centering
+\begin{tabular}{@{}lll@{}} \toprule
+    $v$ [\si{m/s}] & $\omega$ [\si{1/s}]& $t$ [\si{s}]  \\ \midrule
+	0.651429847832 & 0.675985991289 & 0.944148945337 \\
+	0.561207251775 & 0.593848719733 & 0.551827014602 \\
+	0.965870367998 & -0.0472020403097 & 0.866907544693 \\
+	0.599553943288 & 0.0587544316129 & 0.50646754408 \\
+	0.999920990584 & 0.256241820421 & 0.873545321454 \\ \bottomrule
+\end{tabular}
+\label{tab:linearization-successfull-queue}
+\end{table}
+
+\begin{table}[htbp]
+\caption{Fehlgeschlagene Glättung durch die Linearisierungsmethode}
+\centering
+\begin{tabular}{@{}lll@{}} \toprule
+	$v$ [\si{m/s}] & $\omega$ [\si{1/s}]& $t$ [\si{s}]  \\ \midrule
+	0.35622713642 & 0.0318409894024 & 0.465947994926 \\
+	0.986504401637 & 0.391887641257 & 0.42445369839 \\
+	0.375750526008 & -0.753227747355 & 0.796860006376 \\
+	0.327061691964 & 0.365129521577 & 0.573141274238 \\
+	0.405754302611 & -0.742547079808 & 0.529029530426 \\ \bottomrule
+\end{tabular}
+\label{tab:linearization-fail-queue}
+\end{table}
+
+\begin{table}[htbp]
+\caption{Testbahn für Endvergleich}
+\centering
+\begin{tabular}{@{}lll@{}} \toprule
+	$v$ [\si{m/s}] & $\omega$ [\si{1/s}]& $t$ [\si{s}]  \\ \midrule
+	1.0 & 1.0 & 5.0 \\
+	1.0 & -0.8 & 5.0 \\
+	1.0 & 0.0 & 3.0 \\ \bottomrule
+\end{tabular}
+\label{tab:final-compare-queue}
+\end{table}
+
+\begin{table}[htbp]
+\caption{Überschussstudie beim Übergang in eine Gerade}
+\centering
+\begin{tabular}{@{}lll@{}} \toprule
+	$v$ [\si{m/s}] & $\omega$ [\si{1/s}]& $t$ [\si{s}]  \\ \midrule
+	0.7 & 0.7 & 1.0 \\
+	1.0 & 0.0 & 1.0 \\ \bottomrule
+\end{tabular}
+\label{tab:sloppiness-study}
+\end{table}
+
+\newpage
+\section{Berechnung des Bremsweges}
+\label{sec:berechnung-des-bremsweges}
+
+Im folgenden wird die Berechnung des notwendigen Weges $s_n$, um von $v_0$,
+$a_0$ auf $v_f$, $a_f = 0$ unter der Einhaltung von $j_{max}$
+und $a_{max}$ zu bremsen oder zu beschleunigen. Folgende Annahmen
+gelten für die Berechnungen:
+
+\begin{itemize}
+\item $v_0 \ge 0$
+\item $v_f \ge 0$
+\item $|a_0| \le a_{max}$
+\end{itemize}
+
+Andere Fälle sind für die vorliegenden Anwendung entweder nicht relevant oder können durch die Anwendung von affinen Transformationen auf die behandelten Fälle zurückgeführt werden.
+
+Bei der Berechnung der notwendigen Distanz müssen mehrere Fallunterscheidungen getroffen werden. Zunächst muss unterschieden werden, ob die Differenz $\Delta v = |v_f - v_0|$ größer oder kleiner als $\Delta v_{min}$ ist. Dabei bezeichnet $\Delta v_{min}$ den Mindestunterschied zwischen Anfangs- und Endgeschwindigkeit beim ausführen eines vollen S-fömigen Geschwindigkeitsübergangs ($a = a_{max}$ wird erreicht). 
+
+\begin{equation}
+\Delta v_{min} = \frac{a_{0}}{j_{{max}}} \left(- a_{0} + a_{{max}}\right) + \frac{a_{{max}}^{2}}{2 j_{{max}}} + \frac{\left(- a_{0} + a_{{max}}\right)^{2}}{2 j_{{max}}}
+\end{equation}
+
+\textbf{Fall 1: $v_f \ge v_0$,  $\Delta v < \Delta v_{min}$ und $a_0 \ge 0$}
+
+Es müssen zwei Phasen mit konstantem Ruck betrachtet werden. Es gilt
+\begin{align}
+a_1 &= a_0 + j_{max}t_1  \\ 
+v_1 &= v_0 + a_0t_1 + \frac{1}{2}j_{max}t_1^2 \\
+s_1 &= v_0t_1 + \frac{1}{2}a_{0}t_1^2 + \frac{1}{6}j_{max}t_1^3
+\end{align}
+nach der ersten Phase und 
+\begin{align}
+\label{eqn:needed_distance_acc_short_acc}
+a_2 &= a_1 - j_{max}t_2 = 0 \\
+\label{eqn:needed_distance_acc_short_vel}
+v_2 &= v_1 + a_1t_2 - \frac{1}{2}j_{max}t_2^2 = v_f \\
+\label{eqn:needed_distance_acc_short_pos}
+s_2 &= s_1 + v_1t_2 + \frac{1}{2}a_1t_2^2 - \frac{1}{6}j_{max}t_2^3 = s_n
+\end{align}
+nach der zweiten.
+
+Aus (\ref{eqn:needed_distance_acc_short_acc}) erhält man
+\begin{equation}
+\label{eqn:needed_distance_acc_short_t2}
+t_2 = \frac{a_{0}}{j_{{max}}} + t_{1}.
+\end{equation}
+
+Durch Einsetzten von (\ref{eqn:needed_distance_acc_short_t2}) in (\ref{eqn:needed_distance_acc_short_vel}) erhält man entsprechend die Dauer der ersten Phase
+\begin{equation}
+\label{eqn:needed_distance_acc_short_t1}
+t_1 = \frac{1}{j_{{max}}^{2}} \left(- a_{0} j_{{max}} + \frac{\sqrt{2}}{2} \sqrt{j_{{max}}^{2} \left(a_{0}^{2} - 2 j_{{max}} v_{0} + 2 j_{{max}} v_{1}\right)}\right).
+\end{equation}
+
+Mit den Zeiten $t_1$ und $t_2$ ergibt sich die benötigte Distanz aus (\ref{eqn:needed_distance_acc_short_pos}) zu 
+\begin{align}
+\label{eqn:needed_distance_acc_short}
+s_n =& \frac{1}{j_{max}^3} \left( \frac{a_0^3 j_{max}}{3} - a_{0} j_{{max}}^{2} v_{0} + \right. \nonumber \\
+     & \left.\left(\frac{j_{{max}} v_{0}}{2} + \frac{j_{{max}} v_{1}}{2} - \frac{a_{0}^{2}}{4}\right) \sqrt{2j_{{max}}^{2} \left(a_{0}^{2} - 2 j_{{max}} v_{0} + 2 j_{{max}} v_{1}\right)}\right)
+\end{align}
+
+\textbf{Fall 2: $v_f \ge v_0$, $\Delta v \ge \Delta v_{min}$ und $a_0 \ge 0$}
+
+Drei Phasen werden betrachtet. Zwei Phasen mit konstantem Ruck und eine Phase mit konstanter Beschleunigung.
+Nach der ersten Phase gilt
+\begin{align}
+\label{eqn:needed_distance_acc_long_t1}
+a_1 &= a_0 + j_{max}t_1 = a_{max} \\ 
+v_1 &= v_0 + a_0t_1 + \frac{1}{2}j_{max}t_1^2 \\
+s_1 &= v_0t_1 + \frac{1}{2}a_{0}t_1^2 + \frac{1}{6}j_{max}t_1^3.
+\end{align}
+Die Dauer $t_1$ ergibt sich aus (\ref{eqn:needed_distance_acc_long_t1}) zu 
+\begin{equation}
+t_1 = \frac{1}{j_{{max}}} \left(- a_{0} + a_{{max}}\right).
+\end{equation}
+Nach der Phase mit konstanter Beschleunigung gilt
+\begin{align}
+v_2 &= v_1 + a_{max}t_2 \\
+s_2 &= s_1 + v_1t_2 + \frac{1}{2}a_{max}t_2^2.
+\end{align}
+Und nach der letzten Phase mit bekannter Dauer $t_3 = \frac{a_{max}}{j_{max}}$ gilt entsprechend
+\begin{align}
+\label{eqn:needed_distance_acc_long_vel}
+v_3 &= v_2 + a_{max}t_3 = v_f\\
+\label{eqn:needed_distance_acc_long_pos}
+s_3 &= s_2 + v_2t_3 + \frac{1}{2}a_{max}t_3^2 - \frac{1}{6}j_{max}t_1^3 = s_n.
+\end{align}
+
+Aus (\ref{eqn:needed_distance_acc_long_vel}) erhält man 
+\begin{equation}
+t_2 = \frac{1}{a_{{max}} j_{{max}}} \left(\frac{a_{0}^{2}}{2} - a_{{max}}^{2} - j_{{max}} v_{0} + j_{{max}} v_{1}\right)
+\end{equation}
+und damit ergibt sich die benötigte Distanz aus (\ref{eqn:needed_distance_acc_long_pos}) zu 
+\begin{align}
+s_n =& - \frac{a_{0}^{4}}{8 a_{{max}} j_{{max}}^{2}} + \frac{a_{0}^{3}}{3 j_{{max}}^{2}} - \frac{a_{0}^{2} a_{{max}}}{4 j_{{max}}^{2}} + \frac{a_{0}^{2} v_{0}}{2 a_{{max}} j_{{max}}} - \frac{a_{0} v_{0}}{j_{{max}}} + \nonumber \\
+ & \frac{a_{{max}} v_{0}}{2 j_{{max}}} + \frac{a_{{max}} v_{1}}{2 j_{{max}}} - \frac{v_{0}^{2}}{2 a_{{max}}} + \frac{v_{1}^{2}}{2 a_{{max}}}.
+\end{align}
+
+Das vorgehen bei den Fällen mit $v_f < v_0$ ist ähnlich und unterscheidet sich nur durch einige Vorzeichen. Daher wird auf einen vollständigen Lösungsweg verzichtet. 
+
+\textbf{Fall 3: $v_f < v_0$, $\Delta v < \Delta v_{min}$ und $a_0 \le 0$}
+
+\begin{align}
+s_n =& \frac{1}{j_{max}^3} \left( \frac{a_0^3 j_{max}}{3} + a_{0} j_{{max}}^{2} v_{0} + \right. \nonumber \\
+     & \left.\left(\frac{j_{{max}} v_{0}}{2} + \frac{j_{{max}} v_{1}}{2} + \frac{a_{0}^{2}}{4}\right) \sqrt{2j_{{max}}^{2} \left(a_{0}^{2} + 2 j_{{max}} v_{0} - 2 j_{{max}} v_{1}\right)}\right) 
+\end{align}
+
+\textbf{Fall 4: $v_f < v_0$, $\Delta v \ge \Delta v_{min}$ und $a_0 \le 0$}
+\begin{align}
+s_n =& \frac{a_{0}^{4}}{8 a_{{max}} j_{{max}}^{2}} + \frac{a_{0}^{3}}{3 j_{{max}}^{2}} + \frac{a_{0}^{2} a_{{max}}}{4 j_{{max}}^{2}} + \frac{a_{0}^{2} v_{0}}{2 a_{{max}} j_{{max}}} + \frac{a_{0} v_{0}}{j_{{max}}} + \nonumber \\
+ & \frac{a_{{max}} v_{0}}{2 j_{{max}}} + \frac{a_{{max}} v_{1}}{2 j_{{max}}} + \frac{v_{0}^{2}}{2 a_{{max}}} - \frac{v_{1}^{2}}{2 a_{{max}}}.
+\end{align}
+
+Für die Fälle, bei denen das Vorzeichen der Anfangsbeschleunigung nicht mit der Beschleunigungsrichtung zusammenpasst (also z.B. $v_f < v_0$ aber $a_0 > 0$) muss zu $s_n$ der Weg addiert werden, der notwendig ist, um die Beschleunigung auf Null zu reduzieren. Entsprechend muss auch die Anfangsgeschwindigkeit $v_0$ angepasst werden.
+
+\section{Definition des Stetigkeitsbegriffs}
+\label{sec:smoothness-definition}
+Der Begriff der Stetigkeit, der in der Arbeit verwendet wird entspricht der Definition in \cite[S. 193ff]{farin_handbook_2002}.
+Zwei parametrische Kurvenstücke sind $C^k$ stetig miteinander verbunden, wenn sie am Verbindungspunkt in den Ableitungen $0..k$ übereinstimmen. Die geometrische Stetigkeit ist eine etwas weniger restriktive Bedingung. So bedeutet $G^1$-Stetigkeit, dass die Kurven am Verbindungspunkt eine gleichgerichtete Tangente besitzen. $G^2$-Stetigkeit bedeutet, das die Kurven auch die gleiche Krümmung an der Verbindungsstelle aufweisen.

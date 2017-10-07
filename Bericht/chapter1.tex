@@ -1,0 +1,42 @@
+%###########################################################################
+%
+%   Kapitel 1
+%
+%###########################################################################
+\chapter{Bedienung des Handhelds}
+In diesem Kapitel finden Sie eine Bedienungsanleitung für das Handheld und Tipps für den Umgang mit diesem.
+
+Um einen Betrachtungspunkt zu haben legen wir nun fest, dass man das Tablet im Querformat verwendet und "oben" die Seite beschreibt an der die USB Anschlüsse des Raspberrys zu sehen sind. In diesem Fall finden wir die Ladebuchse rechts, HDMI, AUX und einen Mikro USB Anschluss zur Direktversorung links. Der ON/OFF Schalter befindet sich auf der Unterseite rechts. Dieser ist leider nicht all zu gut zugänglich, weshalb es empfohlen wird den Schalter mit einem spitzen Gegenstand zu betätigen (Beispielsweise bietet sich hier die Antenne an).
+
+BILD VON DRAUFSICHT MIT BESCHREIBUNGEN DER ANSCHLÜSSE 
+
+\section{Stromversorgung}
+
+Verbaut ist ein 2,5 Ah LiPo Akku welcher über eine Adafruit Powerboost1000c Ladeelektronik geladen und betrieben wird. Die Elektronik ist sowohl dafür zuständig den Akku aufzuladen als auch im stationären Zustand ein angeschlssossenes USB Netzteil als Stromquelle zu Nutzen. Da der Normalstrom der aus dem Akku gezogen wird sich um die 1A bewegt kann es durchaus zu einer Unterversorgung kommen. Aufgrund dessen wird es nicht empfohlen bei höhster Displayhelligkeit den GSM Suchlauf durchzuführen. Die Displaybeleuchtung dunkelt sich nach 10 Sekunden ab um diesen Fall auszuschließen. Dies kann in den Einstellungen geändert werden. 
+
+BILD DISPLAYHELLIGKEIT
+
+\section{Bedienung der Desktopoberfläche}
+
+Nach dem Anschalten am ON/OFF Schalter auf der Unterseite des Handhelds fährt dieses hoch ohne, dass eine Anmeldung erforderlich ist. Sollte dies geändert werden so müssen müssen zwei Befehle in der Datei lightdm.conf auskommentiert werden. 
+\begin{verbatim}
+cd /etc/lightdm
+nano lightdm.conf
+
+****************
+autologin-user=root
+autologin-user-timeout=0
+****************
+
+müssen durch voransetzen eines "#" auskommentiert werden
+\end{verbatim}
+
+
+Auf dem Desktop befinden sich die wichtigsten Shortcuts für den Gebrauch des GSM Scanners. Das Touchscreen ist so eingestellt, dass man nur einmal klicken muss um Programme auszuführen was eine Bedienung mit dem Finger erleichtern sollte. Um eine einfache Einstellbarkeit der Display zu realisieren haben wir auf dem Desktop Shortcuts hierfür implementiert. Die Stufen 10\%, 50\% und 100\% können ausgewählt werden. Sind andere Stufen gewünscht, so kann man die Displayhelligkeit durch ausführen des Befehls
+\begin{verbatim}
+echo XXX > /sys/class/backlight/rpi_backlight/brightness
+\end{verbatim}
+ändern. XXX kann im Bereich von 0 (0\%) bis 255 (100\%) gewählt werden. 
+
+Ferner findet sich ein virtuelles Keyboard auf dem Desktop falls man mobil etwas schreiben möchte. Reboot und Shutdown Shortcuts sind ebenso zu finden. Bitte beachten Sie: Nach dem Shutdown muss die Stromversorgung zusätzlich am ON/OFF Schalter getrennt werden.
+

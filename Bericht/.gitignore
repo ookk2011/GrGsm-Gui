@@ -1,0 +1,13 @@
+# This shall ignore temporary latex files
+*.aux
+*.log
+*.lof
+*.synctex.gz
+*.lol
+*.lot
+*.out
+*.bbl
+*.blg
+*.ps
+*.dvi
+*.toc

@@ -1,0 +1,46 @@
+%###########################################################################
+%
+%   Kapitel 1
+%
+%###########################################################################
+\chapter{Einige Features}
+Hier werden einige Features gezeigt.
+
+\section{Ein Unterabschnitt}
+Die Tabelle~\ref{tab:example-table} ist ein Beispiel für eine wissenschaftliche Tabelle (ohne vertikale Trennlinien).
+
+\begin{table}[ht]
+\caption{Beispieltabelle}
+\centering
+\begin{tabular}{@{}ccc@{}} \toprule
+    Apfel & Birne & Katze \\
+    \SI{200}{g} & \SI{180}{g} & \SI{3.4}{kg} \\ \bottomrule
+\end{tabular}
+\label{tab:example-table}
+\end{table}
+
+So zitiert man \cite{slam06}. Man kann auch mehrere Quellen auf einmal referieren \cite{pomax16, dlib09, biagiotti_open-loop_2012, hunter_matplotlib:_2007}
+
+In Abbildung~\ref{fig:example-fig} ist eine Kurve dargestellt.
+\mywidthpicture{fail_path_linearization}{Beispielbild}{fig:example-fig}{0.0}{\textwidth}
+
+Inkscape erlaubt es eps-Files und den Text getrennt zu exportieren, auf diese Weise kann man die Schrift nachträglich anpassen. Ein Beispiel dazu ist in Abbildung~\ref{fig:inkscape-fig} dargestellt.
+\myinkscapepicture{mr_kinmatic_model.eps_tex}{Inkskape Bild mit Text}{fig:inkscape-fig}{0.6\textwidth}
+
+Außerdem gibt es eine Umgebung zum Schreiben von Pseudo-Code. Ein Beispiel dazu ist in Algorithmus~\ref{alg:example-alg} dargestellt.
+\begin{algorithm}
+\begin{algorithmic}[1]
+\Procedure{AddTwoNumbers}{$x$, $y$}
+	\State $sum \gets x + y$
+   	\If{$sum = 42$}
+		\State \Call{FixEverything}{}
+   	\EndIf
+\EndProcedure
+\end{algorithmic}
+\caption{Beispielalgorithmus}
+\label{alg:example-alg}
+\end{algorithm}
+
+Das Paket acronym handelt Abkürzungen automatisch. Bei der ersten Verwendung sieht das so aus: \ac{UML}. Wenn die Abkürzung nochmal verwendet wird, steht da nur noch \ac{UML}.
+
+
