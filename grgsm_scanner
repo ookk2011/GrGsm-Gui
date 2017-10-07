@@ -136,15 +136,18 @@ class Window(QtGui.QWidget):
 	
 	def find_country(self, MCC):
 	    temp = []
+	    #if MCC != 0:
 	    temp = temp + str(MCC).split(": ")
 	    MCC = temp
 	    if "262" in MCC[1]:
 		return "Deutschland\n"
 	    with open('mcc.txt', 'r') as fp:
-		for line in fp:
-		    if MCC[1] in line:
-			fp.close()
-			return line[5:]	    
+		    for line in fp:
+			if MCC[1] in line:
+			    fp.close()
+			    return line[5:]
+	    #else: return "-"
+	    
 	    
 
 	def addItems(self, parent, info=""):
@@ -169,7 +172,7 @@ class Window(QtGui.QWidget):
 			                             + content[0] ,
 			                             "data Channel ")
 			channel_item.append(parent_item)  
-			
+			Land = ""
 			Betreiber = self.find_host(Buffer_Channel.MNC)
 			Land = self.find_country(Buffer_Channel.MCC)
 
@@ -183,7 +186,7 @@ class Window(QtGui.QWidget):
 			                        + " " +Buffer_Channel.CID + " \t\tCell Identification\n"			                        
 			                        + " " +Buffer_Channel.PWR+ " \t\tPower\n\n\n"
 			                        + " Laut " + Buffer_Channel.MNC + " ist der Betreiber " + Betreiber
-			                        + "\n Laut " + Buffer_Channel.MCC + " steht die BTS in " + Land
+			                        + "\n Laut " + Buffer_Channel.MCC + " steht die BTS in " + str(Land)
 			                        )
 
 ######## Add TreeBranches
