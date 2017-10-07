@@ -16,7 +16,7 @@ Verbaut ist ein 2,5 Ah LiPo Akku welcher über eine Adafruit Powerboost1000c Lad
 
 BILD DISPLAYHELLIGKEIT
 
-\section{Bedienung der Desktopoberfläche}
+\section{Bedienung über die Desktopoberfläche}
 
 Nach dem Anschalten am ON/OFF Schalter auf der Unterseite des Handhelds fährt dieses hoch ohne, dass eine Anmeldung erforderlich ist. Sollte dies geändert werden so müssen müssen zwei Befehle in der Datei lightdm.conf auskommentiert werden. 
 \begin{verbatim}
@@ -32,7 +32,7 @@ müssen durch voransetzen eines "#" auskommentiert werden
 \end{verbatim}
 
 
-Auf dem Desktop befinden sich die wichtigsten Shortcuts für den Gebrauch des GSM Scanners. Das Touchscreen ist so eingestellt, dass man nur einmal klicken muss um Programme auszuführen was eine Bedienung mit dem Finger erleichtern sollte. Um eine einfache Einstellbarkeit der Display zu realisieren haben wir auf dem Desktop Shortcuts hierfür implementiert. Die Stufen 10\%, 50\% und 100\% können ausgewählt werden. Sind andere Stufen gewünscht, so kann man die Displayhelligkeit durch ausführen des Befehls
+Auf dem Desktop befinden sich die wichtigsten Shortcuts für den Gebrauch des GSM Scanners. Das Touchscreen ist so eingestellt, dass man nur einmal klicken muss um Programme auszuführen was eine Bedienung mit dem Finger erleichtern sollte. Um eine einfache Einstellbarkeit der Displayhelligkeit zu realisieren haben wir auf dem Desktop Shortcuts hierfür implementiert. Die Stufen 10\%, 50\% und 100\% können ausgewählt werden. Sind andere Stufen gewünscht, so kann man die Displayhelligkeit durch ausführen des Befehls
 \begin{verbatim}
 echo XXX > /sys/class/backlight/rpi_backlight/brightness
 \end{verbatim}
@@ -40,3 +40,45 @@ echo XXX > /sys/class/backlight/rpi_backlight/brightness
 
 Ferner findet sich ein virtuelles Keyboard auf dem Desktop falls man mobil etwas schreiben möchte. Reboot und Shutdown Shortcuts sind ebenso zu finden. Bitte beachten Sie: Nach dem Shutdown muss die Stromversorgung zusätzlich am ON/OFF Schalter getrennt werden.
 
+Der GSM Scanner hat ebenfalls ein Desktop Shortcut welches mit einem Klick die Suche nach GSM Basisstationen ermöglicht. Um den Hintergrund zu verstehen erläutere ich hier auf die möglichen Einstellmöglichkeiten mit denen ein Scan gestartet werden kann. 
+
+\section{Erweitern und Verändern}
+
+
+\begin{verbatim}
+Options:
+  -h, --help            show this help message and exit
+  -b BAND, --band=BAND  Specify the GSM band for the frequency. Available
+                        bands are: GSM900, DCS1800, GSM850, PCS1900, GSM450,
+                        GSM480, GSM-R
+  -s SAMP_RATE, --samp-rate=SAMP_RATE
+                        Set sample rate [default=2000000.0] - allowed values
+                        even_number*0.2e6
+  -p PPM, --ppm=PPM     Set frequency correction in ppm [default=0]
+  -g GAIN, --gain=GAIN  Set gain [default=24.0]
+  --args=ARGS           Set device arguments [default=]
+  --speed=SPEED         Scan speed [default=4]. Value range 0-5.
+  -v, --verbose         If set, verbose information output is printed: ccch
+                        configuration, cell ARFCN's, neighbour ARFCN's
+                        
+                   
+grgsm_scanner -g 50 -p 29 --speed=5
+\end{verbatim}
+Mit diesen Übergabeparametern wird der GSM Scanner aufgerufen und sucht im default BAND das Netz von 925 Mhz bis 960 Mhz ab. Dies entspricht dem E-GSM 900 Netz. Ein Gain von 50 dB ist der maximalwert und ermöglicht somit die größte "Ausbeute" was die Ergebnisliste angeht. Der Offset des Quarzes wurde berechnet durch eine Kalibierung des DVB-T Sticks und ist immer mit anzugeben. 
+
+Das zugehörige Desktop Shortcut, wie auch die zur Helligkeitsregulierung, führen Shell Skripte aus welche unter 
+\begin{verbatim}
+/root/Documents
+\end{verbatim}
+hinterlegt sind. Hier kann man eingreifen falls etwas geändert werden soll. Am besten öffnet man diese über das Terminal mit "nano" da sonst kein Textverarbeitungsprogramm installiert ist. 
+
+Alle von uns geschriebenen Komponenten sind im Ordner 
+\begin{verbatim}
+/root/GrGsm-Gui
+\end{verbatim}
+zu finden. Da es sich hierbei um ein Git Repository handelt kann dieses auch über 
+\begin{verbatim}
+cd GrGsm-Gui/
+git pull
+\end{verbatim}
+auf den neusten Stand gebracht werden sollten Veränderungen vorgenommen werden. 
