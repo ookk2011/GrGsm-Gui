@@ -37,7 +37,7 @@ Ausführlichere Anleitung und weitere Wiki-Einträge sind hier nachzulesen:\\
 
 \section{Installation von benötigter Software für gr-gsm}
 
-\subsection*{Installieren von Kalibrate}
+\subsection{Installieren von Kalibrate}
 
 Als erstes installieren wir Kalibrate:
 
@@ -52,7 +52,7 @@ make
 sudo make install 
 \end{code}
 
-\subsection*{Zugriff auf USB-Device freischalten}
+\subsection{Zugriff auf USB-Device freischalten}
 
 Das RTL-SDR Gerät einstecken und ID mit dem Befehl \colorbox{lightgray}{\emph{lsusb}} überprüfen. Zu sehen sollte etwas wie folgend sein:
 
@@ -78,7 +78,7 @@ SUBSYSTEM=="usb", ATTRS{idVendor}=="0bda", ATTRS{idProduct}=="2832", GROUP="adm"
 \noindent\\Falls mehrere RTL-SDR Geräte verwendet werden, können mehrere Zeilen hinzugefügt werden. Die ID muss jeweils natürlich entsprechend des Gerätes abgewandelt werden.\\
 \\Danach sollte der Raspberry Pi neugestartet werden: \colorbox{lightgray}{sudo reboot}
 
-\subsection*{Kalibrierung des RTL-SDR Gerätes}
+\subsection{Kalibrierung des RTL-SDR Gerätes}
 Jetzt können wir den Befehl ausführen um das RTL-SDR Gerät zu kalibrieren (um genau zu sein um den durschnittlichen absoluten Fehler in ppm zu berechnen):
 
 \begin{code}
@@ -132,7 +132,7 @@ average absolute error: 35.897 ppm
 
 \noindent\\Unser durschschnittlicher absoluter Fehler wäre hier also 36 ppm (35.897 ppm).
 
-\subsection*{Installation von GNU Radio}
+\subsection{Installation von GNU Radio}
 
 Als nächstes installieren wir GNU Radio:
 
@@ -140,7 +140,7 @@ Als nächstes installieren wir GNU Radio:
 sudo apt-get install gnuradio gnuradio-dev
 \end{code}
 
-\subsection*{Installieren von libosmocore}
+\subsection{Installieren von libosmocore}
 
 Libosmocore muss kompiliert werden...
 
@@ -168,7 +168,7 @@ sudo apt-get install libusb-1.0.0 libusb-dev
 sudo apt-get install libboost-all-dev libcppunit-dev swig doxygen liblog4cpp5-dev python-scipys
 \end{code}
 
-\subsection*{Installation von gr-gsm}
+\section{Installation von gr-gsm}
 
 Und nun zum letzten Schritt:
 
