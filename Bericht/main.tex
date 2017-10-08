@@ -28,11 +28,18 @@
 \usepackage{graphicx, epstopdf}	% adding pictures
 \usepackage{pstricks-add}	% psticks graphics
 
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{hyperref}
+\usepackage{listings}
+
+
 % This will fix the spacing problem in the list of algorithms
 \usepackage{etoolbox}
 \makeatletter
 \patchcmd{\@chapter}% <cmd>
-  {\chaptermark{#1}}% <search>
+  {\chaptermark{#1}}% <search
   {\chaptermark{#1}%
    \addtocontents{loa}{\protect\addvspace{10\p@}}}% replace
   {}{}% <success><failure>
@@ -182,6 +189,7 @@
   citecolor   	= black %Color of citations
 }
 
+
 % Namen von Referenzen anpassen
 \addto\extrasngerman{\def\figureautorefname{Abbildung}}
 \addto\extrasngerman{\def\tableautorefname{Tabelle}}
@@ -208,8 +216,9 @@
 
 \pagenumbering{arabic}
 \include{introduction}
-\include{chapter1}
-\include{chapter2}
+\include{Installationsanleitung}
+\include{chapter1_c}
+\include{chapter2_c}
 \include{test_chapter}
 \include{summary}
 \include{outlook}
