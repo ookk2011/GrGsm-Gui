@@ -194,20 +194,40 @@ class Window(QtGui.QWidget):
 				item = self.addChild(parent_item, column, channel_info[k], content[k])
 				
 				if k==0:
-					item.setToolTip(column, " Absolute Radio Frequency Channel Number:\n\n" + Buffer_Channel.ARFCN)
+					item.setToolTip(column, " Absolute Radio Frequency Channel Number:\n\n " + Buffer_Channel.ARFCN
+					                + "\n\n In GSM cellular networks, an absolute radio-frequency channel number\n ""(ARFCN) is a code that specifies a pair of physical radio carriers used for\n ""transmission and reception in a land mobile radio system, one for the uplink\n ""signal and one for the downlink signal.\n\n "
+					                "ARFCN for GSM 900 \n "
+					                "ARFCN = (Chan. Freq - 45 Mhz- 890 Mhz)/200\n\n "
+					                "ARFCN for E GSM 900\n "
+					                "ARFCN = 1024 + (Chan. Freq - 45 Mhz - 890 Mhz)/200\n ")
 				elif k==1:
-					item.setToolTip(column, " Frequency:\n\n" + Buffer_Channel.FREQ)
+					item.setToolTip(column, " Frequency:\n\n " + Buffer_Channel.FREQ + "\n\n GSM Downlink Frequency")
 				elif k==2:
-					item.setToolTip(column, " Cell Identification:\n\n" + Buffer_Channel.CID)
+					item.setToolTip(column, " Cell Identification:\n\n " + Buffer_Channel.CID +
+					"\n\n A GSM Cell ID (CID) is a generally unique number used\n "
+					"to identify each base transceiver station (BTS) or\n "
+					"sector of a BTS within a location area code (LAC) \n "
+					"if not within a GSM network.")					
 				elif k==3:
-					item.setToolTip(column, " Location Area Code:\n\n" + Buffer_Channel.LAC)
+					item.setToolTip(column, " Location Area Code:\n\n " + Buffer_Channel.LAC+
+					"\n\n A location area is a set of base stations that are\n "
+					"grouped together to optimise signalling.\n "
+					"To each location area, a unique number called a location area code is assigned.\n ")
+				    
+					
 				elif k==4:
-					item.setToolTip(column, " Mobile Country Code:\n\n" + Buffer_Channel.MCC)
+					item.setToolTip(column, " Mobile Country Code:\n\n " + Buffer_Channel.MCC +
+					"\n\n The mobile country code consists of 3 decimal digits and the mobile\n "
+					"network code consists of 2 or 3 decimal digits. The first \"2\" in 262\n "
+					"stands for Europe, 62 for Germany")
+
+				
 				elif k==5:
 					item.setToolTip(column, " Mobile Network Code:\n\n" + Buffer_Channel.MNC +
 							"\n\n Legende:\n 01: Telekom Deutschland\n 02: Vodafone\n 03: Telefonica (ehem. E-Plus)\n 10: DB Telematic")
 				elif k==6:
-					item.setToolTip(column, "Power:\n\n" + Buffer_Channel.PWR)		
+					item.setToolTip(column, " Power:\n\n " + Buffer_Channel.PWR + 
+					                "\n\n GSM needs at least a Power of -102dBm " )		
 
 			self.treeWidget.addTopLevelItem(item)
 			
