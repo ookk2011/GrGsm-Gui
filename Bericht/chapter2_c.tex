@@ -1,0 +1,20 @@
+%###########################################################################
+%
+%   Kapitel 2
+%
+%###########################################################################
+\chapter{Setup des Raspberry PI}
+Im folgenden wird beschrieben wie wir den Raspberry aufgesetzt haben und welche Probleme uns dabei begegnet sind.
+\section{Das How To und interdependencies}
+
+GrGsm wird hauptsächlich von Piotr Krysik entwickelt und wird von diesem auch gepflegt. Es gibt auch einen vorgeschlagenen Weg wie man GrGsm auf einem Raspberry Pi 3 zu installieren hat. Dieser Weg hat sich allerdings als Sackgasse erwiesen. Grund dafür war, dass in Zwischenzeit GnuRadio weiterentwickelt aber nicht für Raspbian Jessie und dadurch inkompatibel zu GrGsm wurde. 
+
+
+GrGsm benötigte damals eine Version von GnuRadio > 3.7.9. Für Raspbian war allerdings nur die Version 3.7.6 verfügbar. Der Versuch auf unstable Versionen 3.7.10+ auszuweichen erwies sich ebenso als Aussichtslos. Das Installieren von diesen Versionen führte nur dazu, dass wiederum Bibliotheken von denen GnuRadio abhängig war inkompatibel wurden. 
+
+Nach einiger Recherche wie man ein funktionierendes Gesamtpaket erhalten könnte sind wir auf das Programm PyBombs gestoßen. Dieses macht genau das, es installiert ein Programm und alle Abhängigkeiten die dieses zur Nutzung benötigt. Im Gegensatz zu apt-get, wie man es von von Ubuntu und sonstigen Linux Distributionen kennt 
+
+!!!!!!!!!!HIER PYBOMBS ERKLÄREN!!!!!!!!!!!!
+
+An diesem Punkt haben wir beschlossen, dass eine zeitnahe Umsetzung mit GrGsm wohl aussichtslos erscheint. Indes standen wir mit Piotr Krysik in Kontakt um einen Weg zu finden wie es doch zu lösen sein könnte. Zu dieser Zeit war dieser dabei seine Anpassungen in einem Raspberry Emulator zur überprüfen. Wir entschieden uns doch Airprobe zu verwenden. Dafür haben wir uns an einer Jahrealten Anleitung orientiert und sind dabei auf Kali Linux gestoßen, dieses war glücklicherweise auch für Raspberrys verfügbar. Nachdem wir das installiert hatten, war, wer hätte es gedacht Gnuradio mittlerweile zu Neu um mit Airprobe arbeiten zu können. Allerdings war die stabile Version glücklicherweise 3.7.10, somit mit dem neusten GrGsm kompatibel und so konnten wir alle Abhängigkeiten installieren, die Kalibrierung durchführen und GrGsm installieren. Zu der Zeit haben wir schon einen Monat Arbeit in das Projekt stecken und die Grenzen unserer Frustrationstoleranz immer ein Stückchen weiter schieben müssen.
+
