@@ -1,4 +1,5 @@
 # This shall ignore temporary latex files
+/Anhang
 *.aux
 *.log
 *.lof
