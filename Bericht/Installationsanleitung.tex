@@ -9,6 +9,14 @@ Ausführlichere Anleitung und weitere Wiki-Einträge sind hier nachzulesen:\\
 
 \subsection{Installieren von Kalibrate}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%Das Programm ist dazu da den Offset des Quarzes zu berechnen
+%Um eine Verbindung aufzubauen ist es nötig den Offset dem Programm mit zu übergeben
+%Dies sollte bestenfalls wiederholt werden, wenn der DVBTStick schon warm gelaufen ist, da dieser Offset Temperaturabhängig ist. 
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 Als erstes installieren wir Kalibrate:
 
 \begin{code}[	numbers=left,stepnumber=1]
@@ -33,6 +41,7 @@ Bus 001 Device 002: ID 0424:9514 Standard Microsystems Corp.
 Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
 \end{code}
 
+
 \noindent{}\\In unserem Fall ist die ID \textbf{0bda:2832}. Anschließend öffnen wir eine rules-Datei:
 
 \begin{code}
@@ -50,6 +59,12 @@ SUBSYSTEM=="usb", ATTRS{idVendor}=="0bda", ATTRS{idProduct}=="2832", GROUP="adm"
 
 \subsection{Kalibrierung des RTL-SDR Gerätes}
 Jetzt können wir den Befehl ausführen um das RTL-SDR Gerät zu kalibrieren (um genau zu sein um den durschnittlichen absoluten Fehler in ppm zu berechnen):
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%um den durchschnittlichen absoluten Fehler des Quarzoffsets in ppm...
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{code}
 kal -s GSM900 
@@ -101,6 +116,13 @@ average absolute error: 35.897 ppm
 \end{code}
 
 \noindent\\Unser durschschnittlicher absoluter Fehler wäre hier also 36 ppm (35.897 ppm).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Hier vielleicht 29 ppm schreiben weil wir damit arbeiten?
+% Und dazu schreiben, dass es nicht schlimm ist  wenn die PLL nicht locked
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Installation von GNU Radio}
 
