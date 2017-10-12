@@ -33,6 +33,7 @@
 \usepackage{lmodern}
 \usepackage{hyperref}
 \usepackage{listings}
+\usepackage{float}
 
 \lstnewenvironment{code}[1][]%
 {
@@ -137,6 +138,16 @@
 }%newcommand%
 % call: \myscalepicture{file}{caption}{label}{angle}{scale}
 
+% ps/eps-file with caption and scaling and float layout
+\newcommand{\myfloatpicture}[5]{
+\begin{figure}[H]
+\centering
+\includegraphics[scale=#5,angle=#4]{#1}
+\caption{#2}\label{#3}
+\end{figure}
+}%newcommand%
+% call: \myscalepicture{file}{caption}{label}{angle}{scale}
+
 % This one is special: In incscape you have the possibility to export an eps-file
 % with an .tex file containing the text of the image. You than get two files, e.g.:
 % 1. pic.eps
@@ -226,9 +237,10 @@
 \pagenumbering{arabic}
 \include{introduction}
 \include{Installationsanleitung}
+\include{GUI_Anleitung}
 \include{chapter1_c}
 \include{chapter2_c}
-\include{chapter3_c}
+%\include{chapter3_c}
 \include{test_chapter}
 \include{summary}
 \include{outlook}

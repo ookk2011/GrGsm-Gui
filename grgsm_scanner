@@ -101,7 +101,7 @@ class Window(QtGui.QWidget):
 		                         " \t\t   GrGsm Scanner GUI\n\n\n"
 		                         " Mit Hilfe der GNURADIO Bloecke \"GrGsm\" von Piotr Krysik\n"
 		                         " wird der BCCH umliegender GSM BTS ausgelesen und dargestellt\n\n"
-		                         " Ein Klick auf den gewuenschten Kanal links zeigt die Parameter an\n\n\n\n\n\n\n\n\n\n\n\n"
+		                         " Ein Klick auf den gewuenschten Kanal links zeigt die Parameter an\n\n\n\n\n\n\n\n\n\n\n"
 		                         " Projektarbeit unter Prof. Litzenburger im SoSe 2017\n"
 		                         " von Dennis Dette und Christian Kobiela\n\n"
 		                         , self.right)
