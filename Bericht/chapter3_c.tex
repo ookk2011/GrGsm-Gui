@@ -38,15 +38,25 @@ Zudem braucht man noch gewisses Werkzeug:
 \item Kreuzschlitzschraubenzieher 
 \item Lot 
 \item Litzen mit 1,5 mm$^2$
-\item M3 x .5 x 6M Schrauben x6
-\item 2-56 3/8 Schrauben x6
+\item M3 x .5 x 6M Schrauben x12
 \end{itemize}
 
-\section{Stromversorgung}
+\section{Zusammenbau}
 
-Herzstück der Stromversorgung ist ein Adafruit PowerBoost1000C. Hierbei handelt es sich um eine Elektronik wie sie in vielen Powerbanks zu finden ist. Das heißt einerseits hat man einen MikroUSB Eingang über den der LiPo Akku geladen werden kann andererseits gibt es einen USB Ausgang an dem die 3,7V des Akkus auf 5V hochgeregelt, ausgegeben werden. Für das Laden des Akkus ist der MCP73871 von Microchip verantwortlich, der DC/DC Boostconverter ist von Texas Instruments TPS6109. Der USB Connector wurde nicht verbaut und die 5V werden über verlöteten Litzen direkt auf den Raspberry Pi geleitet. 
+Der Zusammenbau des Tablets ist ziemlich selbsterklärend.
 
-Üblicherweise können 1A oder Spitzenwerte bis zu 2,5A können aus dem Akku gezogen werden. Die Maximale Stromaufnahme des Raspberry neträgt 2,5A. Trotzdem kann es bei dauerhaften und rechenintensiven Aufgaben zu einer Unterversorgung kommen. 
+\mywidthpicture{zusammenbau}{Zusammenbau der Caseteile\cite{Adafruit}}{fig:case-fig}{0.0}{\textwidth}
+
+Nachdem die gedruckten Teile wie in Abbildung~\ref{fig:case-fig} zusammen gebaut wurden müssen nur noch die einzelnen Komponenten an Ihren Platz geschraubt werden, wie in Abbildung~\ref{fig:case2-fig} zu sehen ist.
+
+\mywidthpicture{zusammenbau2}{Einbau der Elektronik \cite{Adafruit}}{fig:case2-fig}{0.0}{\textwidth}
+
+Anschließend noch den Akku mit einem Kabelbinder an seinem Rahmen befestigen und dann über dem Displaytreiber festschrauben: Abbildung~\ref{fig:case3-fig}
+
+\mywidthpicture{zusammenbau3}{Einsetzen des Akkus \cite{Adafruit}}{fig:case3-fig}{0.0}{\textwidth}
+
+Zu guter Letzt noch das Flachbandkabel des Display in den Raspberry stecken, hierfür zuerst die graue Lasche nach oben ziehen, Kabel einlegen und Lasche wieder eindrücken. Deckel zu und fertig.
+
 
 \subsection{Verkabelung}
 \mywidthpicture{Verkabelung}{Verkabelung im Inneren des Case\cite{Adafruit}}{fig:Verkabelung-fig}{0.0}{\textwidth}
@@ -59,4 +69,11 @@ Der positive Ausgang des PowerBoost1000C wird mit dem GPIO \# 2 und der Negative
 
 Der 5V Pin des Displaytreibers wird mit den GPIO \# 4 und GND an GPIO \# 9 des Raspberrys verbunden. 
 \mywidthpicture{pinout}{Pinbelegung des Raspberry \cite{microsoft}}{fig:pinout-fig}{0.0}{\textwidth}
+
+\section{Stromversorgung}
+
+Herzstück der Stromversorgung ist ein Adafruit PowerBoost1000C. Hierbei handelt es sich um eine Elektronik wie sie in vielen Powerbanks zu finden ist. Das heißt einerseits hat man einen MikroUSB Eingang über den der LiPo Akku geladen werden kann andererseits gibt es einen USB Ausgang an dem die 3,7V des Akkus auf 5V hochgeregelt, ausgegeben werden. Für das Laden des Akkus ist der MCP73871 von Microchip verantwortlich, der DC/DC Boostconverter ist von Texas Instruments TPS6109. Der USB Connector wurde nicht verbaut und die 5V werden über verlöteten Litzen direkt auf den Raspberry Pi geleitet. 
+
+Üblicherweise können 1A oder Spitzenwerte bis zu 2,5A können aus dem Akku gezogen werden. Die Maximale Stromaufnahme des Raspberry neträgt 2,5A. Trotzdem kann es bei dauerhaften und rechenintensiven Aufgaben zu einer Unterversorgung kommen. 
+
 
