@@ -1,3 +1,4 @@
+
 \chapter{Anleitung zur GUI unter PyQt4}
 
 \section{Allgemeiner Aufbau der GUI}
@@ -8,27 +9,29 @@ und ein größeres auf der Rechten.
 Im linken Feld werden die Kanäle dargestellt, welche nach und nach gescannt und hinzugefügt werden.
 Im rechten Feld wird zu Beginn Informationen zur Projektarbeit ausgegeben. Diese wird durch die Informationen von ausgewählten Kanälen überschrieben, dazu jedoch später mehr.
 
-\myfloatpicture{GUI_Window}{Standard Fenster GUI}{fig1}{0.0}{0.5}
+\mywidthpicture{GUI_Window}{Standard Fenster GUI}{fig:fig1}{0.0}{\textwidth}
 
 \noindent Solange die Suche nach Kanälen noch nicht abgeschlossen wurde, wird oben im Fensterrahmen \textbf{-searching for GSM BTS-} dargestellt (siehe Abbildung:\ref{fig1}).
 Falls der Scan abgeschlossen ist, wird dies durch ein \textbf{Done} angezeigt, ersichtlich aus Bild \ref{fig2}. Außerdem sollten nun alle gefundenen Kanäle im linken Feld zu sehen sein.
 
-\myfloatpicture{GUI_Done}{Abgeschlossener Scan}{fig2}{0.0}{0.5}
+\mywidthpicture{GUI_Done}{Abgeschlossener Scan}{fig:fig2}{0.0}{\textwidth}
+
 
 \noindent Falls Kanäle schon gescannt wurden und somit links auftauchen, können diese ausgewählt werden um Informationen der einzelnen Parameter einzusehen.
 Unter den Parametern befinden sich der ARFCN, Frequenz, LAC, MCC, MNC, CID und die Power.
 Zusätzlich werden ein paar weitere Informationen gegeben (siehe Abbildung:\ref{fig3}).
 Sollte ein Maus angeschlossen sein können die Informationen auch durch eine Art Tooltip über mouse-hovering auf dem jeweiligen Kanal ausgegeben werden (siehe Abbildung:\ref{fig4}).
 
-\myfloatpicture{GUI_Textinfo}{Info des BCCH}{fig3}{0.0}{0.5}
+\mywidthpicture{GUI_Textinfo}{Info des BCCH}{fig:fig3}{0.0}{\textwidth}
 
-\myfloatpicture{GUI_Tooltip}{Mouseover Tooltip}{fig4}{0.0}{0.5}
+\mywidthpicture{GUI_Tooltip}{Mouseover Tooltip}{fig:fig4}{0.0}{\textwidth}
+
 
 \noindent Bei jedem Kanal ist es möglich durch einen kleinen Pfeil rechts daneben, diesen aufzurollen um die Parameter einzeln zu betrachten (siehe Abbildung:\ref{fig5}). Durch anklicken wieder auf die einzelnen Parameter wird die jeweilige Information dargestellt (siehe Abbildung:\ref{fig6}).
 
-\myfloatpicture{GUI_aufgeklappt}{GUI Ansicht angeklickt}{fig5}{0.0}{0.5}
+\mywidthpicture{GUI_aufgeklappt}{GUI Ansicht angeklickt}{fig:fig5}{0.0}{\textwidth}
 
-\myfloatpicture{GUI_childinfo}{Infos der Childnodes}{fig6}{0.0}{0.5}
+\mywidthpicture{GUI_childinfo}{Infos der Childnodes}{fig:fig}{0.0}{\textwidth}
 
 
 \section{Anleitung zum Anpassen des textuellen Inhalts}
