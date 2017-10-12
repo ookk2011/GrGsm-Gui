@@ -128,6 +128,16 @@
 }%newcommand%
 % call: \mywidthpicture{file}{caption}{label}{angle}{width}
 
+% ps/eps-file with caption and width
+\newcommand{\mydennis}[5]{
+\begin{figure}[hptb]
+\centering
+\includegraphics[width=#5,angle=#4]{#1}
+\caption{#2}\label{#3}
+\end{figure}
+}%newcommand%
+% call: \mywidthpicture{file}{caption}{label}{angle}{width}
+
 % ps/eps-file with caption and scaling
 \newcommand{\myscalepicture}[5]{
 \begin{figure}[hptb]
