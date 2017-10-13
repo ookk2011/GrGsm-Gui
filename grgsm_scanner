@@ -531,7 +531,7 @@ class channel_info(object):
 class _do_scan(QtCore.QThread):
     
     trigger = QtCore.pyqtSignal()
-    trigger2 = QtCore.pyqtSignal()
+    trigger2 = QtCore.pyqtSignal(channel_info)
         
     def __init__(self, samp_rate, band, speed, ppm, gain, args, prn = None):
 
@@ -627,7 +627,8 @@ class _do_scan(QtCore.QThread):
 		os.close(null_fds[1])
 		if prn:
 		    prn(found_list)
-		    self.trigger2.emit()
+#		    for info in sorted(found_list):
+	#		self.trigger2.emit(info)
 		    
 		signallist.extend(found_list)
 		
@@ -646,13 +647,20 @@ def argument_parser():
                       help="Specify the GSM band for the frequency.\nAvailable bands are: " + bands_list)
     parser.add_option("-s", "--samp-rate", dest="samp_rate", type="float", default=2e6,
                       help="Set sample rate [default=%default] - allowed values even_number*0.2e6")
-    parser.add_option("-p", "--ppm", dest="ppm", type="intx", default=0,
+    
+    
+    #########################!!!!!!!!!!!!!!!!!!!default werte ppm0 gain 24 und speed4!!!!!!!!!!!!!!!!!!!!####################
+    
+    
+    parser.add_option("-p", "--ppm", dest="ppm", type="intx", default=29,
                       help="Set frequency correction in ppm [default=%default]")
-    parser.add_option("-g", "--gain", dest="gain", type="eng_float", default=24.0,
+    parser.add_option("-g", "--gain", dest="gain", type="eng_float", default=50.0,
                       help="Set gain [default=%default]")
     parser.add_option("", "--args", dest="args", type="string", default="",
                       help="Set device arguments [default=%default]")
-    parser.add_option("--speed", dest="speed", type="intx", default=4,
+    parser.add_option("--speed", dest="speed", type="intx", default=5,
+                      
+                      
                       help="Scan speed [default=%default]. Value range 0-5.")
     parser.add_option("-v", "--verbose", action="store_true",
                       help="If set, verbose information output is printed: ccch configuration, cell ARFCN's, neighbour ARFCN's")
@@ -687,6 +695,7 @@ def argument_parser():
 	
 
 def main(options = None):
+    info = channel_info
     
     newFont=QtGui.QFont("Times", 13 )
     app = QtGui.QApplication(sys.argv)
@@ -712,9 +721,9 @@ def main(options = None):
         for info in sorted(found_list):
             print info
 	    #############
-	    #with open("output.txt", "a") as myfile:
-	    #	myfile.write(str(info) + "\n")
-		#myfile.close()
+	    with open("output.txt", "a") as myfile:
+	    	myfile.write(str(info) + "\n")
+		myfile.close()
 		
 	    window.addItems(window.treeWidget.invisibleRootItem(), info)
 	    #############
@@ -722,18 +731,15 @@ def main(options = None):
             if options.verbose:
                 print info.get_verbose_info()
 
-    #do_scan(options.samp_rate, options.band, options.speed,
-    #        options.ppm, options.gain, options.args, prn = printfunc)
     
     scan_thread = _do_scan(options.samp_rate, options.band, options.speed,
           		options.ppm, options.gain, options.args, prn = printfunc)
     scan_thread.start()
     
-   
-    #app.processEvents()  
-    
+       
     scan_thread.trigger.connect(lambda:  
                                 window.changeTitle())
+    #scan_thread.trigger2.connect(lambda: window.addItems(window.treeWidget.invisibleRootItem(), info))
     
     while scan_thread.isRunning():
 	###window = Window()

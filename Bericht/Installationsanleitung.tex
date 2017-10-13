@@ -1,5 +1,5 @@
 
-\chapter{Installationsanleitung}
+\chapter{Installationsanleitung}\label{Install}
 
 Ausführlichere Anleitung und weitere Wiki-Einträge sind hier nachzulesen:\\
 \url{https://github.com/ptrkrysik/gr-gsm/wiki/Installation-on-RaspberryPi-3}
@@ -181,3 +181,14 @@ sudo ldconfig
 [grc]
 local_blocks_path=/usr/local/share/gnuradio/grc/blocks
 \end{code}
+
+\section{Reinstallation}
+Sollte an irgend einem Punkt etwas dermaßen kaputt gegangen sein, dass eine Rettung nicht mehr möglich ist kann die auf der DVD hinterlegte ISO Datei auf die MikroSD Karte des Raspberry geflasht werden um den Auslieferungszustand wieder zu erlangen. Die ISO muss erstmal auf einen PC kopiert und anschließend entpackt werden.
+\begin{code}
+sudo dd if=~/Path_to_Img.img of=/dev/mmcblk0 
+\end{code}
+\noindent\\Als OutputFile muss die MikroSD ausgewählt werden. welche vorher mit 
+\begin{code}
+lsblk
+\end{code}
+\noindent\\lokalisiert wurde.
