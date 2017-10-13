@@ -7,48 +7,37 @@
 \chapter{Bedienung des Handhelds}
 In diesem Kapitel finden Sie eine Bedienungsanleitung für das Handheld und Tipps für den Umgang mit diesem.
 
-Um einen gemeinsamen Betrachtungspunkt zu haben legen wir nun fest, dass man das Tablet im Querformat verwendet und "oben" die Seite beschreibt an der die USB Anschlüsse des Raspberrys zu sehen sind. In diesem Fall finden wir die Ladebuchse rechts über die das Tablet sowohl geladen als auch stationär verwendet werden kann. HDMI, AUX und einen Mikro USB Anschluss 2 zur Direktversorung, Überbrückung des Akkus, links. Der ON/OFF Schalter befindet sich auf der Unterseite rechts. Dieser ist leider nicht all zu gut zugänglich, weshalb es empfohlen wird den Schalter mit einem spitzen Gegenstand zu betätigen (Bspw. bietet sich hier die Antenne an).
+Um einen gemeinsamen Betrachtungspunkt zu haben legen wir nun fest, dass man das Tablet im Querformat verwendet und "oben" die Seite beschreibt an der die USB Anschlüsse des Raspberrys zu sehen sind. In diesem Fall finden wir die Ladebuchse rechts über die das Tablet sowohl geladen als auch stationär verwendet werden kann. HDMI, AUX und einen zweiten Mikro USB Anschluss zur Direktversorung, Überbrückung des Akkus, links. Der ON/OFF Schalter befindet sich auf der Unterseite rechts. Dieser ist leider wegen der Drucktoleranzen des 3D Druckers nicht all zu gut zugänglich. Deshalb wird es empfohlen den Schalter mit einem spitzen Gegenstand zu betätigen (bspw. bietet sich hier die Antenne des DVB-T Sticks an).
 
 \mywidthpicture{Draufsicht}{Beschreibung der Anschlüsse}{fig:Draufsicht-fig}{0.0}{0.8\textwidth}
 
 \section{Stromversorgung}
 
-Verbaut ist ein 2,5 Ah LiPo Akku welcher über eine Adafruit Powerboost1000c Ladeelektronik geladen und betrieben wird. Die Elektronik ist sowohl dafür zuständig den Akku aufzuladen als auch bei der stationären Verwendung ein angeschlssossenes USB Netzteil als Stromquelle zu Nutzen. Da der Normalstrom der aus dem Akku gezogen wird sich um die 1A bewegt kann es durchaus zu einer Unterversorgung kommen. Aufgrund dessen wird es nicht empfohlen bei höhster Displayhelligkeit den GSM Suchlauf durchzuführen. Die Displaybeleuchtung dunkelt sich nach 10 Sekunden ab um diesen Fall der möglichen Unterversorgung auszuschließen. Dies kann in den Einstellungen geändert werden. 
+Verbaut ist ein 2,5 Ah LiPo Akku welcher über eine Adafruit Powerboost1000c Ladeelektronik geladen und betrieben wird. Die Elektronik ist sowohl dafür zuständig den Akku aufzuladen als auch bei der stationären Verwendung ein angeschlossenes USB Netzteil als Stromquelle zu Nutzen. Da der Normalstrom der aus dem Akku gezogen wird sich um die 1A bewegt kann es durchaus zu einer Unterversorgung kommen. Aufgrund dessen wird es nicht empfohlen bei höhster Displayhelligkeit den \ac{GSM} Suchlauf durchzuführen. Die Displaybeleuchtung dunkelt sich nach 10 Sekunden ab um diesen Fall der möglichen Unterversorgung auszuschließen. Dies kann in den Einstellungen geändert werden. 
 
 \mywidthpicture{Displayhelligkeit}{Einstellung der automatischen Helligkeitsregelung}{fig:Dislpayhelligkeit-fig}{0.0}{\textwidth}
 
 \section{Bedienung über die Desktopoberfläche}
 
-Auf dem Desktop befinden sich die wichtigsten Shortcuts für den Gebrauch des GSM Scanners. 
+Auf dem Desktop befinden sich die wichtigsten Shortcuts für den Gebrauch des \ac{GSM} Scanners. 
 
 \mywidthpicture{Desktop}{Ansicht des Dekstops}{fig:Desktop-fig}{0.0}{\textwidth}
 
 
-Das Touchscreen ist so eingestellt, dass man nur einmal klicken muss um Programme auszuführen was eine Bedienung mit dem Finger erleichtern sollte. Um eine einfache Einstellbarkeit der Displayhelligkeit zu realisieren haben wir auf dem Desktop Shortcuts hierfür implementiert. Die Stufen 10\%, 50\% und 100\% können ausgewählt werden. Sind andere Stufen gewünscht, so kann man die Displayhelligkeit durch ausführen des Befehls
+Das Touchscreen wurde so eingestellt, dass man nur einmal klicken muss um Programme auszuführen was eine Bedienung mit dem Finger erleichtert. Um eine einfache Einstellbarkeit der Displayhelligkeit zu realisieren haben wir auf dem Desktop Shortcuts hierfür implementiert. Die Stufen 10\%, 50\% und 100\% können ausgewählt werden. Sind andere Stufen gewünscht, so kann man die Displayhelligkeit durch ausführen des Befehls
 \begin{code}
 echo XXX > /sys/class/backlight/rpi_backlight/brightness
 \end{code}
-\noindent\\ändern. XXX kann im Bereich von 0 (0\%) bis 255 (100\%) gewählt werden. 
+\noindent\\ in einer Konsole ändern. XXX kann im Bereich von 0 (0\%) bis 255 (100\%) gewählt werden. 
 
-Ferner findet sich ein virtuelles Keyboard auf dem Desktop falls man mobil etwas schreiben möchte. Reboot und Shutdown Shortcuts sind ebenso zu finden. Bitte beachten Sie: Nach dem Shutdown muss die Stromversorgung zusätzlich am ON/OFF Schalter getrennt werden.
+Ferner findet sich ein virtuelles Keyboard auf dem Desktop falls man mobil etwas schreiben möchte. Reboot und Shutdown Shortcuts sind ebenso zu finden. Bitte beachten Sie: Nach dem Shutdown muss die Stromversorgung zusätzlich am ON/OFF Schalter getrennt werden da sonst weiterhin Spannung am Display anliegt.
 
-Der GSM Scanner hat ebenfalls ein Desktop Shortcut welches mit einem Klick die Suche nach GSM Basisstationen ermöglicht. Um den Hintergrund zu verstehen erläutere ich hier auf die möglichen Einstellmöglichkeiten mit denen ein Scan gestartet werden kann. 
+\subsection{Den Scanner starten}
+
+Der \ac{GSM} Scanner hat ebenfalls ein Desktop Shortcut welches mit einem Klick die Suche nach \ac{GSM} Basisstationen ermöglicht. Um den Hintergrund zu verstehen werden im folgenden Kapitel die Einstellmöglichkeiten, mit denen ein Scan gestartet werden kann, erläutert. 
 
 \section{Erweitern und Verändern}
-
-Nach dem Anschalten am ON/OFF Schalter auf der Unterseite des Handhelds fährt dieses hoch ohne, dass eine Anmeldung erforderlich ist. Sollte dies geändert werden, so müssen müssen zwei Befehle in der Datei lightdm.conf auskommentiert werden. 
-\begin{code}
-cd /etc/lightdm
-nano lightdm.conf
-
-****************
-autologin-user=root
-autologin-user-timeout=0
-****************
-
-^ muessen durch voransetzen eines "#" auskommentiert werden
-\end{code}
-
+\subsection{Startup}
 
 \begin{code}
 Options:
@@ -69,15 +58,15 @@ Options:
                    
 grgsm_scanner -g 50 -p 29 --speed=5
 \end{code}
-\noindent\\Mit diesen Übergabeparametern wird der GSM Scanner aufgerufen und sucht im default BAND GSM900 das Netz von 925 Mhz bis 960 Mhz ab. Dies entspricht dem E-GSM 900 Netz. Ein Gain von 50 dB ist der Maximalwert und ermöglicht somit die größte "Ausbeute" was die Ergebnisliste angeht. Der Offset des Quarzes bei Betriebstemperatur wurde berechnet durch eine Kalibierung des DVB-T Sticks und ist immer mit anzugeben. 
+\noindent\\Mit diesen Übergabeparametern wird der \ac{GSM} Scanner aufgerufen und sucht im default BAND GSM900 das Netz von 925 Mhz bis 960 Mhz ab. Dies entspricht dem E-GSM 900 Netz. Ein Gain von 50 dB ist der Maximalwert und ermöglicht somit die größte "Ausbeute" was die Ergebnisliste angeht. Der Offset des Quarzes bei Betriebstemperatur wurde in Kapitel \ref{Kal} durch eine Kalibierung des DVB-T Sticks berechnet und ist immer mit anzugeben. 
 
-Das zugehörige Desktop Shortcut, wie auch die Shortcuts zur Helligkeitsregulierung, führen Shell Skripte aus welche unter 
+Das zugehörige Desktop Shortcut, wie auch die Shortcuts zur Helligkeitsregulierung, führen Shell Skripte aus, welche unter 
 \begin{code}
 /root/Documents
 \end{code}
-\noindent\\hinterlegt sind. Hier kann man eingreifen falls etwas geändert werden soll. Am besten öffnet man diese über das Terminal mit "nano" da sonst kein Textverarbeitungsprogramm installiert ist. 
+\noindent\\hinterlegt sind. Hier kann man eingreifen falls etwas geändert werden soll. Zum Beispiel wenn ein neuer Stick mit einem anderen Quarz Offset verwendet werden soll. Am besten öffnet man diese über das Terminal mit "nano" da sonst kein Textverarbeitungsprogramm installiert ist. 
 
-Alle von uns geschriebenen Komponenten sind im Ordner 
+Alle weiteren von uns geschriebenen Komponenten sind im Ordner 
 \begin{code}
 /root/GrGsm-Gui
 \end{code}
@@ -87,3 +76,18 @@ cd GrGsm-Gui/
 git pull
 \end{code}
 \noindent\\auf den neusten Stand gebracht werden, sollten Veränderungen vorgenommen werden. 
+
+\subsection{Autostartup}
+
+Nach dem Anschalten am ON/OFF Schalter auf der Unterseite des Handhelds fährt dieses hoch ohne, dass eine Anmeldung erforderlich ist. Sollte dies geändert werden, so müssen zwei Befehle in der Datei lightdm.conf auskommentiert werden. 
+\begin{code}
+cd /etc/lightdm
+nano lightdm.conf
+
+****************
+autologin-user=root
+autologin-user-timeout=0
+****************
+
+^ muessen durch voransetzen eines "#" auskommentiert werden
+\end{code}
