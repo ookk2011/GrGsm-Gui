@@ -531,6 +531,7 @@ class channel_info(object):
 class _do_scan(QtCore.QThread):
     
     trigger = QtCore.pyqtSignal()
+    trigger2 = QtCore.pyqtSignal()
         
     def __init__(self, samp_rate, band, speed, ppm, gain, args, prn = None):
 
@@ -626,6 +627,7 @@ class _do_scan(QtCore.QThread):
 		os.close(null_fds[1])
 		if prn:
 		    prn(found_list)
+		    self.trigger2.emit()
 		    
 		signallist.extend(found_list)
 		
@@ -710,9 +712,9 @@ def main(options = None):
         for info in sorted(found_list):
             print info
 	    #############
-	    with open("output.txt", "a") as myfile:
-	    	myfile.write(str(info) + "\n")
-		myfile.close()
+	    #with open("output.txt", "a") as myfile:
+	    #	myfile.write(str(info) + "\n")
+		#myfile.close()
 		
 	    window.addItems(window.treeWidget.invisibleRootItem(), info)
 	    #############

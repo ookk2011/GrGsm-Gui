@@ -1,1 +1,0 @@
-ARFCN: 1006, Freq:  931.4M, CID: 13033, LAC:  1998, MCC: 262, MNC:   3, Pwr: -37
