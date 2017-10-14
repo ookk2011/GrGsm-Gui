@@ -4,6 +4,10 @@
 Im folgenden Kapitel soll die GUI und deren Inhalt anhand einiger Bildbeispiele verdeutlich werden.
 Nachfolgend wird erläutert wie und wo im Code es möglich ist, diese Inhalte anzupassen bzw. zu verändern.
 
+Zuerst jedoch noch ein paar Erklärungen zu dem Aufbau unseres modifizierten grgsm_scanners.
+Zu Beginn des Programm, wird in der Main-Funktion unsere GUI aufgerufen und aufgebaut, während diese nun im Hintergrund auf einem Thread läuft, wird auf einem anderen Thread das Scanning fortgeführt.
+In den folgenden Abschnitten wird nun näher erläutert wie genau die GUI diese Informationen darstellt und den Scan-Vorgang kommuniziert.
+
 \section{Allgemeiner Aufbau der GUI}
 
 
@@ -16,7 +20,7 @@ Im rechten Feld wird zu Beginn Informationen zur Projektarbeit ausgegeben. Diese
 \mydennis{GUI_Window}{Standard Fenster GUI}{fig1}{0.0}{0.9\textwidth}
 
 \noindent Solange die Suche nach Kanälen noch nicht abgeschlossen wurde, wird oben im Fensterrahmen \textbf{-searching for GSM BTS-} dargestellt (siehe Abbildung:\ref{fig1}).
-Falls der Scan abgeschlossen ist, wird dies durch ein \textbf{Done} angezeigt, ersichtlich aus Bild \ref{fig2}. Außerdem sollten nun alle gefundenen Kanäle im linken Feld zu sehen sein.
+Falls der Scan abgeschlossen ist, wird dies durch ein \textbf{--DONE!--} angezeigt, ersichtlich aus Bild \ref{fig2}. Außerdem sollten nun alle gefundenen Kanäle im linken Feld zu sehen sein.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
