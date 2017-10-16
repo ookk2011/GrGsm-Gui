@@ -130,7 +130,7 @@
 
 % ps/eps-file with caption and width
 \newcommand{\mydennis}[5]{
-\begin{figure}[hptb]
+\begin{figure}[H]
 \centering
 \includegraphics[width=#5,angle=#4]{#1}
 \caption{#2}\label{#3}
@@ -228,6 +228,7 @@
 \interfootnotelinepenalty=10000
 
 \begin{document}
+\raggedbottom
 
 \include{title_page}
 % content starts at the right page
@@ -241,19 +242,16 @@
 \include{table_of_contents}
 \include{list_of_acronyms}
 \include{list_of_figures}
-\include{list_of_tables}
 \cleardoublepage
 
 \pagenumbering{arabic}
 \include{introduction}
 \include{Installationsanleitung}
+\include{Hardware}
+\include{Bedienung}
 \include{GUI_Anleitung}
-\include{chapter1_c}
-\include{chapter3_c}
-\include{chapter2_c}
-\include{test_chapter}
+\include{Setup}
 \include{summary}
-\include{outlook}
 \include{bibliography}
 
 

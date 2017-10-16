@@ -4,7 +4,8 @@
 Im folgenden Kapitel soll die GUI und deren Inhalt anhand einiger Bildbeispiele verdeutlich werden.
 Nachfolgend wird erläutert wie und wo im Code es möglich ist, diese Inhalte anzupassen bzw. zu verändern.
 
-Zuerst jedoch noch ein paar Erklärungen zu dem Aufbau unseres modifizierten grgsm_scanners.
+Zuerst jedoch noch ein paar Erklärungen zu dem Aufbau unseres modifizierten grgsm-scanners.
+
 Zu Beginn des Programm, wird in der Main-Funktion unsere GUI aufgerufen und aufgebaut, während diese nun im Hintergrund auf einem Thread läuft, wird auf einem anderen Thread das Scanning fortgeführt.
 In den folgenden Abschnitten wird nun näher erläutert wie genau die GUI diese Informationen darstellt und den Scan-Vorgang kommuniziert.
 
@@ -17,7 +18,7 @@ und ein größeres auf der Rechten.
 Im linken Feld werden die Kanäle dargestellt, welche nach und nach gescannt und hinzugefügt werden.
 Im rechten Feld wird zu Beginn Informationen zur Projektarbeit ausgegeben. Diese wird durch die Informationen von ausgewählten Kanälen überschrieben, dazu jedoch später mehr.
 
-\mydennis{GUI_Window}{Standard Fenster GUI}{fig1}{0.0}{0.9\textwidth}
+\mydennis{GUI_Window}{Standard Fenster GUI}{fig1}{0.0}{\textwidth}
 
 \noindent Solange die Suche nach Kanälen noch nicht abgeschlossen wurde, wird oben im Fensterrahmen \textbf{-searching for GSM BTS-} dargestellt (siehe Abbildung:\ref{fig1}).
 Falls der Scan abgeschlossen ist, wird dies durch ein \textbf{--DONE!--} angezeigt, ersichtlich aus Bild \ref{fig2}. Außerdem sollten nun alle gefundenen Kanäle im linken Feld zu sehen sein.
@@ -28,7 +29,7 @@ Falls der Scan abgeschlossen ist, wird dies durch ein \textbf{--DONE!--} angezei
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\mydennis{GUI_Done}{Abgeschlossener Scan}{fig2}{0.0}{0.9\textwidth}
+\mydennis{GUI_Done}{Abgeschlossener Scan}{fig2}{0.0}{\textwidth}
 
 
 \noindent Falls Kanäle schon gescannt wurden und somit links auftauchen, können diese ausgewählt werden um Informationen der einzelnen Parameter einzusehen.
@@ -36,9 +37,9 @@ Unter den Parametern befinden sich der ARFCN, Frequenz, LAC, MCC, MNC, CID und d
 Zusätzlich werden ein paar weitere Informationen ausgegeben (siehe Abbildung:\ref{fig3}).
 Sollte eine Maus angeschlossen sein können die Informationen auch durch eine Art Tooltip über mouse-hovering auf dem jeweiligen Kanal ausgegeben werden (siehe Abbildung:\ref{fig4}).
 
-\mydennis{GUI_Textinfo}{Info des BCCH}{fig3}{0.0}{0.9\textwidth}
+\mydennis{GUI_Textinfo}{Info des BCCH}{fig3}{0.0}{\textwidth}
 
-\mydennis{GUI_Tooltip}{Mouseover Tooltip}{fig4}{0.0}{0.9\textwidth}
+\mydennis{GUI_Tooltip}{Mouseover Tooltip}{fig4}{0.0}{\textwidth}
 
 
 \newpage Bei jedem Kanal ist es möglich durch einen kleinen Pfeil links daneben, diesen aufzurollen um die Parameter einzeln zu betrachten (siehe Abbildung:\ref{fig5}). Durch anklicken wieder auf die einzelnen Parameter wird die jeweilige Information dargestellt (siehe Abbildung:\ref{fig6}).
@@ -48,6 +49,7 @@ Sollte eine Maus angeschlossen sein können die Informationen auch durch eine Ar
 \mydennis{GUI_childinfo}{Infos der Childnodes}{fig6}{0.0}{0.9\textwidth}
 
 
+\newpage
 \section{Anleitung zum Anpassen des textuellen Inhalts}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -78,6 +80,7 @@ self.text = QtGui.QLabel("\n"
                          " von Dennis Dette und Christian Kobiela\n\n"
                          , self.right)
 \end{code} 
+\noindent 
 
 \subsection*{Anpassung der Parentnode}
 
@@ -122,19 +125,15 @@ elif k==3:
 	item.setToolTip(column, " Location Area Code:\n\n " + Buffer_Channel.LAC+
 	"\n\n A location area is a set of base stations that are\n "
 	"grouped together to optimise signalling.\n "
-	"To each location area, a unique number called a location area code is assigned.\n ")
-				    
-					
+	"To each location area, a unique number called a location area code is assigned.\n ")				
 elif k==4:
 	item.setToolTip(column, " Mobile Country Code:\n\n " + Buffer_Channel.MCC +
 	"\n\n The mobile country code consists of 3 decimal digits and the mobile\n "
 	"network code consists of 2 or 3 decimal digits. The first \"2\" in 262\n "
-	"stands for Europe, 62 for Germany")
-				
+	"stands for Europe, 62 for Germany")				
 elif k==5:
 	item.setToolTip(column, " Mobile Network Code:\n\n" + Buffer_Channel.MNC +
-	"\n\n Legende:\n 01: Telekom Deutschland\n 02: Vodafone\n 03: Telefonica (ehem. E-Plus)\n 10: DB Telematic")
-	
+	"\n\n Legende:\n 01: Telekom Deutschland\n 02: Vodafone\n 03: Telefonica (ehem. E-Plus)\n 10: DB Telematic")	
 elif k==6:
 	item.setToolTip(column, " Power:\n\n " + Buffer_Channel.PWR + 
 	"\n\n GSM needs at least a Power of -102dBm " )
