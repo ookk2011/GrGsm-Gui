@@ -741,11 +741,7 @@ def main(options = None):
                                 window.changeTitle())
     #scan_thread.trigger2.connect(lambda: window.addItems(window.treeWidget.invisibleRootItem(), info))
     
-    while scan_thread.isRunning():
-	###window = Window()
-	window.show() 	
-	sys.exit(app.exec_())
-	
+
     #window = Window()
     window.show() 	
     sys.exit(app.exec_())     
