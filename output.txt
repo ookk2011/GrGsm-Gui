@@ -9,3 +9,5 @@ ARFCN:   10, Freq:  937.0M, CID: 47103, LAC:  7222, MCC: 262, MNC:   2, Pwr: -37
 ARFCN:   12, Freq:  937.4M, CID:     0, LAC:  7222, MCC: 262, MNC:   2, Pwr: -33
 ARFCN:   14, Freq:  937.8M, CID: 27281, LAC:  7222, MCC: 262, MNC:   2, Pwr: -32
 ARFCN:   27, Freq:  940.4M, CID: 17733, LAC:  7222, MCC: 262, MNC:   2, Pwr: -35
+ARFCN:   35, Freq:  942.0M, CID: 11832, LAC:  7222, MCC: 262, MNC:   2, Pwr: -28
+ARFCN:   37, Freq:  942.4M, CID: 48382, LAC:  7222, MCC: 262, MNC:   2, Pwr: -47
