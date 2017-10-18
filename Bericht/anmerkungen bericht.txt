@@ -1,16 +1,39 @@
-s. 16:	komische layout sollte nach satz ende kommen vl?
+S.1	Bezeichnungen Großbuchstaben, womöglich 1-2 kommas aber keine ahnung :D
 
-s. 17:	schreibfehler
-	vl noch besser unterteilen die versch. skripte subüberschrift
+S.2	Überschrifft Trennen, da unschön
 
-s. 18:	hier und auch generell krasse zerstückelung der sätze dzrch blocktext, nur bei mir ?
+S.5	Überschrift newpage
 
-s. 20:	kek
+S.6	worttrennung "geflasht"
 
-s. 22/23: Bildanordnung staffeln? wieder nur bei mir vl? also bild-text-bild-text
+S.7	"zu" wörter zusammenschreiben :D
+	durck des cases schreibfehler 2. absatz
+	außerdem 3. absatz
 
-s. 15/25: 2 mal über stromversorgung reden?
+S.13	letzter absatz es empfiehlt sich? klingt vielleicht ein wenig besser
 
-s. 27: noch inhalte vom template
+S.15	Satz vl unterm Bild beginnen
 
-anmerkung: ich fände es cooler wenn man die seitennummern unten hätte, außerdem wäre es dope wenn sich noch was an den überschriften von der position machen lassen würde
+S.17	Satz gewurschtel
+
+S.18	3. absatz schreibfehler und komma überflüssig
+	anleitung pyqt4 leerzeichen bei abbildungen
+	
+S.20	Artikel vor Power weg
+
+S.23	Überschrift
+
+S.24	komma überflüssig
+	auswählen groß?
+	Listing bezeichnung einheitlich
+	
+S.26	irgendwie komisch geschrieben keine ahnung :D
+	letzter absatz das was wir gesucht haben keine komma glaube :D
+	
+S.27	wer hätte es gedacht,
+	ende 1. absatz ein wenig anders vl nochmal formulieren :D
+	
+
+
+
+
