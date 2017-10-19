@@ -1,5 +1,5 @@
 #!/bin/bash
 
-echo 255 >  /sys/class/backlight/rpi_backlight/brightness
+echo 130 >  /sys/class/backlight/rpi_backlight/brightness
 
 
