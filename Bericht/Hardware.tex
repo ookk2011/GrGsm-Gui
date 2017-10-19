@@ -1,0 +1,79 @@
+%###########################################################################
+%
+%   Kapitel 3
+%
+%###########################################################################
+
+\chapter{Hardwareaufbau des Handhelds}
+
+Im folgenden wird erklärt wie die verbauten Komponenten zusammen zu fügen sind, sollte der Bedarf bestehen das Handheld erneut auf zu bauen, etwas zu modifizieren oder sich ein defekt einschleichen. Die Anleitung für das Case stammt von Adafruit.com und wird als PDF Datei der DVD beiliegen. 
+
+\section{Druck des Cases}
+
+Die CAD Dateien zum Druck des Cases sind auf der DVD hinterlegt und können dafür verwendet werden das Case erneut drucken zu lassen beziehungsweise falls notwendig zu modifizieren. 
+
+Das emfpohlene Material ist PLA wobei ABS, Nylon, copperfill, bamboofill oder PET ebenfalls verwendet werden. Da nur ABS auf Lager bei Herr Strohrmann HiWis war wurde dieses verwendet. 
+
+Über den Sommer haben wir die Erfahren gemacht, dass sich das Material stark verzieht wenn es Wärme ausgesetzt wird. Sollte dies wieder vorkommen kann ein vorsichtig verwendeter Föhn Abhilfe verschaffen um das Case wieder in Form zu bringen. 
+
+\section{Benötigten Teile}
+Die Teile die man benötigt um das Handheld aufzubauen sind folgende:
+
+\newpage
+\subsection{Hardware}
+\begin{itemize}
+\item Pi Foundation PiTFT - 7" Touchscreen Display 
+\item Raspberry Pi 3 
+\item 200mm Flex Displaykabel
+\item Adafruit PowerBoost 1000C
+\item 2500mAh LiPo Akku
+\item SPDT Schalter
+\item 16GB  Micro SD Karte (r: 95MB/s, w: 60MB/s)
+\end{itemize} 
+
+\subsection{Werkzeuge und Ergänzendes}
+Zudem braucht man noch gewisses Werkzeug:
+\begin{itemize}
+\item 3D Drucker 
+\item Filament  
+\item Kreuzschlitzschraubenzieher 
+\item Lot 
+\item Litzen mit 1,5 mm$^2$
+\item Kabelbinder
+\item M3 x .5 x 6M Schrauben x12
+\end{itemize}
+
+\section{Zusammenbau}
+
+Der Zusammenbau des Tablets ist ziemlich selbsterklärend.
+
+\mywidthpicture{zusammenbau}{Zusammenbau der Caseteile\cite{Adafruit}}{fig:case-fig}{0.0}{\textwidth}
+
+Nachdem die gedruckten Teile wie in Abbildung~\ref{fig:case-fig} zusammen gebaut wurden müssen nur noch die einzelnen Komponenten an Ihren Platz geschraubt werden, wie in Abbildung~\ref{fig:case2-fig} zu sehen ist.
+
+\mywidthpicture{zusammenbau2}{Einbau der Elektronik \cite{Adafruit}}{fig:case2-fig}{0.0}{\textwidth}
+
+Anschließend noch den Akku mit einem Kabelbinder an seinem Rahmen befestigen und dann über dem Displaytreiber festschrauben: Abbildung~\ref{fig:case3-fig}
+
+\mywidthpicture{zusammenbau3}{Einsetzen des Akkus \cite{Adafruit}}{fig:case3-fig}{0.0}{\textwidth}
+
+Zu guter Letzt noch das Flachbandkabel des Displays in den Raspberry stecken, hierfür zuerst die graue Lasche an beide Seiten nach oben ziehen, Kabel einlegen und Lasche gleichmäßig wieder eindrücken. Deckel zu und fertig.
+
+
+\subsection{Verkabelung}
+\mywidthpicture{Verkabelung}{Verkabelung im Inneren des Case\cite{Adafruit}}{fig:Verkabelung-fig}{0.0}{\textwidth}
+
+EN und GND des Adafruit PowerBoost1000C werden an den Schalter rausgeleitet. GND wird hierbei mit dem mittleren Pin verbunden. 
+
+Der Akku wird über den JST Stecker an die PowerBoost1000C angeschlossen. 
+
+Der positive Ausgang des PowerBoost1000C wird mit dem GPIO \# 2 und der Negative mit dem GPIO \# 6 verbunden. 
+
+Der 5V Pin des Displaytreibers wird mit den GPIO \# 4 und GND an GPIO \# 9 des Raspberrys verbunden. 
+\mywidthpicture{pinout}{Pinbelegung des Raspberry \cite{microsoft}}{fig:pinout-fig}{0.0}{0.9\textwidth}
+
+\section{Stromversorgung}
+
+Herzstück der Stromversorgung ist ein Adafruit PowerBoost1000C. Hierbei handelt es sich um eine Elektronik wie sie in vielen Powerbanks zu finden ist. Das heißt einerseits hat man einen MikroUSB Eingang über den der LiPo Akku geladen werden kann andererseits gibt es einen USB Ausgang an dem die 3,7V des Akkus auf 5V hochgeregelt, ausgegeben werden. Für das Laden des Akkus ist der MCP73871 von Microchip verantwortlich, der DC/DC Boostconverter ist von Texas Instruments: TPS6109. Der USB Connector wurde nicht verbaut und die 5V werden über verlöteten Litzen direkt auf den Raspberry Pi geleitet. 
+
+Üblicherweise können 1A oder Spitzenwerte bis zu 2,5A können aus dem Akku gezogen werden. Die Maximale Stromaufnahme des Raspberry beträgt 2,5A.  
