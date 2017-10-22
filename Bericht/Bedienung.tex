@@ -7,14 +7,14 @@
 \chapter{Bedienung des Handhelds}
 In diesem Kapitel finden Sie eine Bedienungsanleitung für das Handheld und Tipps für den Umgang mit diesem.
 
-Um einen gemeinsamen Betrachtungspunkt zu haben legen wir nun fest, dass man das Tablet im Querformat verwendet und "oben" die Seite beschreibt an der die USB Anschlüsse des Raspberrys zu sehen sind (vgl. Abbildung \ref{fig:Draufsicht-fig}). In diesem Fall finden wir die Ladebuchse rechts über die das Tablet sowohl geladen als auch stationär verwendet werden kann. HDMI, AUX und einen zweiten Mikro USB Anschluss zur Direktversorung beziehungsweise Überbrückung des Akkus, links. Der ON/OFF Schalter befindet sich auf der Unterseite rechts. Dieser ist leider wegen der Drucktoleranzen des 3D Druckers nicht all zu gut zugänglich. Deshalb wird es empfohlen den Schalter mit einem spitzen Gegenstand zu betätigen (bspw. bietet sich hier die Antenne des DVB-T Sticks an).
+Um einen gemeinsamen Betrachtungspunkt zu haben legen wir nun fest, dass man das Tablet im Querformat verwendet und "oben" die Seite beschreibt an der die USB Anschlüsse des Raspberrys zu sehen sind (vgl. Abbildung \ref{fig:Draufsicht-fig}). In diesem Fall finden wir die Ladebuchse rechts über die das Tablet sowohl geladen als auch stationär verwendet werden kann. HDMI, AUX und einen zweiten MikroUSB Anschluss zur Direktversorung beziehungsweise Überbrückung des Akkus, links. Der ON/OFF Schalter befindet sich auf der Unterseite rechts. Dieser ist leider wegen der Drucktoleranzen des 3D Druckers nicht all zu gut zugänglich. Deshalb empfiehlt es sich den Schalter mit einem spitzen Gegenstand zu betätigen (bspw. bietet sich hier die Antenne des DVB-T Sticks an).
 
 \mywidthpicture{Draufsicht}{Beschreibung der Anschlüsse}{fig:Draufsicht-fig}{0.0}{0.7\textwidth}
 \newpage
 
 \section{Stromversorgung}
 
-Verbaut ist ein 2,5 Ah LiPo Akku welcher über eine Adafruit Powerboost1000c Ladeelektronik geladen und betrieben wird. Die Elektronik ist sowohl dafür zuständig den Akku aufzuladen als auch bei der stationären Verwendung ein angeschlossenes USB Netzteil als Stromquelle zu Nutzen. Da der Normalstrom der aus dem Akku gezogen wird sich um die 1A bewegt kann es durchaus zu einer Unterversorgung kommen. Aufgrund dessen wird es nicht empfohlen bei höhster Displayhelligkeit den \ac{GSM} Suchlauf durchzuführen. Die Displaybeleuchtung dunkelt sich nach 10 Sekunden ab um diesen Fall der möglichen Unterversorgung auszuschließen. Dies kann in den Einstellungen wie in Abbildung \ref{Displayhelligkeit} geändert werden. 
+Verbaut ist ein 2,5 Ah LiPo Akku welcher über eine Adafruit Powerboost1000c Ladeelektronik geladen und betrieben wird. Die Elektronik ist sowohl dafür zuständig den Akku aufzuladen als auch bei der stationären Verwendung ein angeschlossenes USB Netzteil als Stromquelle zu Nutzen. Da der Normalstrom der aus dem Akku gezogen wird sich um die 1A bewegt kann es durchaus zu einer Unterversorgung kommen. Aufgrund dessen wird es nicht empfohlen bei höchster Displayhelligkeit den \ac{GSM} Suchlauf durchzuführen. Die Displaybeleuchtung dunkelt sich nach 10 Sekunden ab um diesen Fall der möglichen Unterversorgung auszuschließen. Dies kann in den Einstellungen wie in Abbildung \ref{Displayhelligkeit} geändert werden. 
 
 \mywidthpicture{Displayhelligkeit}{Einstellung der automatischen Helligkeitsregelung}{fig:Dislpayhelligkeit-fig}{0.0}{\textwidth}
 
@@ -59,7 +59,7 @@ Options:
                         configuration, cell ARFCN's, neighbour ARFCN's
                         
                    
-grgsm_scanner -g 50 -p 29 --speed=5
+grgsm_scanner -g 50 -p 29 
 \end{code}
 \noindent\\Mit diesen Übergabeparametern wird der \ac{GSM} Scanner aufgerufen und sucht im default BAND GSM900 das Netz von 925 Mhz bis 960 Mhz ab. Dies entspricht dem E-GSM 900 Netz. Ein Gain von 50 dB ist der Maximalwert und ermöglicht somit die größte "Ausbeute" was die Ergebnisliste angeht. Der Offset des Quarzes bei Betriebstemperatur wurde in Kapitel \ref{Kal} durch eine Kalibierung des DVB-T Sticks berechnet und ist immer mit anzugeben. 
 
@@ -67,7 +67,7 @@ Das zugehörige Desktop Shortcut, wie auch die Shortcuts zur Helligkeitsregulier
 \begin{code}
 /root/GrGsm-Gui
 \end{code}
-\noindent\\hinterlegt sind. Hier kann man eingreifen falls etwas geändert werden soll. Zum Beispiel wenn ein neuer Stick mit einem anderen Quarz Offset verwendet werden soll. Am besten öffnet man diese über das Terminal mit "nano" da sonst kein Textverarbeitungsprogramm installiert ist. 
+\noindent\\hinterlegt sind. Hier kann man eingreifen falls es gewünscht ist etwas zu ändern. Zum Beispiel wenn ein neuer Stick mit einem anderen Quarz Offset verwendet werden soll. Am besten öffnet man die Skripte über das Terminal mit "nano" da sonst kein Textverarbeitungsprogramm installiert ist. 
 
 Alle weiteren von uns geschriebenen Komponenten sind ebenfalls im Ordner 
 \begin{code}
@@ -78,7 +78,7 @@ Alle weiteren von uns geschriebenen Komponenten sind ebenfalls im Ordner
 cd GrGsm-Gui/
 git pull
 \end{code}
-auf den neusten Stand gebracht werden, sollten Veränderungen vorgenommen werden. 
+\noindent\\auf den neusten Stand gebracht werden, sollten Veränderungen vorgenommen werden. 
 
 \subsection{Autostartup}
 

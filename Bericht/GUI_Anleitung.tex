@@ -1,7 +1,7 @@
 
 \chapter{Anleitung zur GUI unter PyQt4}
 
-Im folgenden Kapitel soll die GUI und deren Inhalt anhand einiger Bildbeispiele verdeutlich werden.
+Im folgenden Kapitel soll die GUI und deren Inhalt anhand einiger Bildbeispiele verdeutlicht werden.
 Nachfolgend wird erläutert wie und wo im Code es möglich ist, diese Inhalte anzupassen bzw. zu verändern.
 
 Zuerst jedoch noch ein paar Erklärungen zu dem Aufbau unseres modifizierten grgsm-scanners.
@@ -16,11 +16,11 @@ Starten des grgsm-scanner initiiert die GUI wie zu sehen in Abbildung:\ref{fig1}
 Das GUI-Fenster ist in zwei Felder aufgeteilt, ein kleineres Feld auf der linken Seite
 und ein größeres auf der Rechten.
 Im linken Feld werden die Kanäle dargestellt, welche nach und nach gescannt und hinzugefügt werden.
-Im rechten Feld wird zu Beginn Informationen zur Projektarbeit ausgegeben. Diese wird durch die Informationen von ausgewählten Kanälen überschrieben, dazu jedoch später mehr.
+Im rechten Feld werden zu Beginn Informationen zur Projektarbeit ausgegeben. Diese wird durch die Informationen von ausgewählten Kanälen überschrieben dazu jedoch später mehr.
 
 \mydennis{GUI_Window}{Standard Fenster GUI}{fig1}{0.0}{\textwidth}
 
-\noindent Solange die Suche nach Kanälen noch nicht abgeschlossen wurde, wird oben im Fensterrahmen \textbf{-searching for GSM BTS-} dargestellt (siehe Abbildung:\ref{fig1}).
+\noindent Solange die Suche nach Kanälen noch nicht abgeschlossen wurde, wird oben im Fensterrahmen \textbf{-searching for GSM BTS-} dargestellt (siehe Abbildung: \ref{fig1}).
 Falls der Scan abgeschlossen ist, wird dies durch ein \textbf{--DONE!--} angezeigt, ersichtlich aus Bild \ref{fig2}. Außerdem sollten nun alle gefundenen Kanäle im linken Feld zu sehen sein.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -33,7 +33,7 @@ Falls der Scan abgeschlossen ist, wird dies durch ein \textbf{--DONE!--} angezei
 
 
 \noindent Falls Kanäle schon gescannt wurden und somit links auftauchen, können diese ausgewählt werden um Informationen der einzelnen Parameter einzusehen.
-Unter den Parametern befinden sich der ARFCN, Frequenz, LAC, MCC, MNC, CID und die Power.
+Unter den Parametern befinden sich der ARFCN, Frequenz, LAC, MCC, MNC, CID und Power.
 Zusätzlich werden ein paar weitere Informationen ausgegeben (siehe Abbildung:\ref{fig3}).
 Sollte eine Maus angeschlossen sein können die Informationen auch durch eine Art Tooltip über mouse-hovering auf dem jeweiligen Kanal ausgegeben werden (siehe Abbildung:\ref{fig4}).
 
@@ -50,7 +50,7 @@ Sollte eine Maus angeschlossen sein können die Informationen auch durch eine Ar
 
 
 \newpage
-\section{Anleitung zum Anpassen des textuellen Inhalts}
+\section[Anleitung zum Anpassen des textuellen Inhalts]{Anleitung zum Anpassen \\ des textuellen Inhalts}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -103,7 +103,7 @@ parent_item.setToolTip(column,"Der Kanal mit der " + Buffer_Channel.ARFCN +
 
 \subsection*{Anpassung der  Childnodes}
 
-Nun zum letzten Teil, dessen Text angepasst werden kann, den Parameterinformationen. Diese sind einzusehen, wenn ein Kanal aufklappt ist. Hier werden durch auswählen der einzelnen Parameter die Informationen dargestellt, welche im Code \ref{code3} zu sehen sind. Die sieben Parameterinformationen werden in den verschiedenen If-Fällen definiert. 
+Nun zum letzten Teil, dessen Text angepasst werden kann, den Parameterinformationen. Diese sind einzusehen, wenn ein Kanal aufklappt ist. Hier werden durch Auswählen der einzelnen Parameter die Informationen dargestellt, welche im Code \ref{code3} zu sehen sind. Die sieben Parameterinformationen werden in den verschiedenen If-Fällen definiert. 
 
 \begin{code}[firstnumber=204,numbers=left,stepnumber=1,caption={Parameterinformationen},captionpos=b,label={code3}]
 if k==0:
