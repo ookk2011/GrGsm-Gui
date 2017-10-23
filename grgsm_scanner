@@ -238,9 +238,9 @@ class Window(QtGui.QWidget):
 				elif k==6:
 					item.setToolTip(column, " Power:\n\n " + Buffer_Channel.PWR + 
 					                "\n\n GSM needs at least a Power of -102dBm "+
-					                "\n\n Because we use a RTLSDR Stick the displayed Power ist not"+
-					                "\na reliable Value. You can only see it as a relative level"+
-					                "\nbetween the found BTS")		
+					                "\n\n Because we use a RTLSDR Stick the displayed power ist not"+
+					                "\n a reliable value. You can only see it as a relative level"+
+					                "\n between the found BTS")		
 
 			self.treeWidget.addTopLevelItem(item)
 			
