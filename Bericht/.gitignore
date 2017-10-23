@@ -13,4 +13,6 @@
 *.dvi
 *.toc
 output.txt
+scan_output.txt
+main.pdf
 

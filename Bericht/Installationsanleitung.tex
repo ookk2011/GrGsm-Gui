@@ -17,7 +17,7 @@ Ausführlichere Anleitung und weitere Wiki-Einträge sind hier nachzulesen:\\
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Als erstes installieren wir Kalibrate:
+Als erstes wird Kalibrate installiert:
 
 \begin{code}[	numbers=left,stepnumber=1]
 sudo apt-get install libtool autoconf automake libfftw3-dev librtlsdr0 librtlsdr-dev libusb-1.0-0 libusb-1.0-0-dev
@@ -32,7 +32,7 @@ sudo make install
 
 \subsection{Zugriff auf USB-Device freischalten}
 
-Das RTL-SDR Gerät einstecken und ID mit dem Befehl \colorbox{lightgray}{\emph{lsusb}} überprüfen. Zu sehen sollte etwas wie folgend sein:
+Das RTL-SDR Gerät einstecken und ID mit dem Befehl \colorbox{lightgray}{\emph{lsusb}} überprüfen. Zu sehen sollte etwas wie Folgendes sein:
 
 \begin{code}
 Bus 001 Device 004: ID **0bda:2832** Realtek Semiconductor Corp. RTL2832U DVB-T
@@ -48,17 +48,17 @@ Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
 sudo nano /etc/udev/rules.d/20.rtlsdr.rules
 \end{code}
 
-\noindent\\...in welcher dann folgende Zeile hinzugefügt werden muss:
+\noindent\\ In dieser muss dann folgende Zeile hinzugefügt werden:
 
 \begin{code}
 SUBSYSTEM=="usb", ATTRS{idVendor}=="0bda", ATTRS{idProduct}=="2832", GROUP="adm", MODE="0666", SYMLINK+="rtl_sdr"
 \end{code}
 
-\noindent\\Falls mehrere RTL-SDR Geräte verwendet werden, können mehrere Zeilen hinzugefügt werden. Die ID muss jeweils natürlich entsprechend des Gerätes abgewandelt werden.\\
+\noindent\\Falls mehrere RTL-SDR Geräte verwendet werden, können mehrere Zeilen hinzugefügt werden. Die ID muss jeweils, natürlich entsprechend des Gerätes, abgewandelt werden.\\
 \\Danach sollte der Raspberry Pi neugestartet werden: \colorbox{lightgray}{sudo reboot}
 
 \subsection{Kalibrierung des RTL-SDR Gerätes} \label{Kal}
-Jetzt können wir den Befehl ausführen um das RTL-SDR Gerät zu kalibrieren (um genau zu sein um den durschnittlichen absoluten Fehler in ppm zu berechnen):
+Jetzt können wir den Befehl ausführen um das RTL-SDR Gerät zu kalibrieren (um genau zu sein, um den durchschnittlichen, absoluten Fehler des Quarzes in ppm zu berechnen):
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -91,13 +91,13 @@ GSM-900:
 	chan: 124 (959.8MHz - 32.429kHz)	power: 247404.23
 \end{code}
 
-\noindent\\Das stärkste Signal wäre in diesem Fall Kanal 112. Also führen wir die Kalibrierung auf diesem Kanal durch:
+\noindent\\Das stärkste Signal wäre in diesem Fall Kanal 112. Also wird die Kalibrierung auf diesem Kanal durchgeführt:
 
 \begin{code}
 kal -c 112 
 \end{code}
 
-\noindent\\...und erhalten ein Ergebnis wie folgt:
+\noindent\\Daraus ergibt sich folgendes Ergebnis:
 
 \begin{code}
 Found 1 device(s):
@@ -115,7 +115,7 @@ not found: 0
 average absolute error: 35.897 ppm
 \end{code}
 
-\noindent\\Unser durschschnittlicher absoluter Fehler wäre hier also 36 ppm (35.897 ppm).
+\noindent\\Der durchschnittliche, absolute Fehler wäre in diesem Fall also 36 ppm (35.897 ppm).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
@@ -126,7 +126,7 @@ average absolute error: 35.897 ppm
 
 \subsection{Installation von GNU Radio}
 
-Als nächstes installieren wir GNU Radio:
+Als nächstes wird GNU Radio installiert:
 
 \begin{code}
 sudo apt-get install gnuradio gnuradio-dev
@@ -150,7 +150,7 @@ sudo ldconfig -i
 cd
 \end{code}
 
-\noindent\\...außerdem benötigen wir noch ein paar andere Dinge.
+\noindent\\...außerdem werden noch ein paar andere Dinge benötigt.
 
 \begin{code}[numbers=left, stepnumber=1]
 sudo apt-get install gr-osmosdr rtl-sdr
@@ -176,7 +176,7 @@ sudo make install
 sudo ldconfig
 \end{code}
 
-\noindent\\Zuletzt erstellen wir noch die ~/.gnuradio/config.conf config-Datei, mit \colorbox{lightgray}{\emph{nano ~/.gnuradio/config.conf}}. Und fügen diese zwei Zeilen hinzu (damit GNU Radio die custom Blöcke von gr-gsm finden kann):
+\noindent\\Zuletzt wird noch die ~/.gnuradio/config.conf config-Datei erstellt, mit \colorbox{lightgray}{\emph{nano ~/.gnuradio/config.conf}}. Und es werden folgende zwei Zeilen hinzugefügt (damit GNU Radio die custom Blöcke von gr-gsm finden kann):
 
 \begin{code}
 [grc]
@@ -184,11 +184,11 @@ local_blocks_path=/usr/local/share/gnuradio/grc/blocks
 \end{code}
 
 \section{Reinstallation}
-Sollte an irgend einem Punkt etwas dermaßen kaputt gegangen sein, dass eine Rettung nicht mehr möglich ist kann die auf der DVD hinterlegte ISO Datei auf die MikroSD Karte des Raspberry geflasht werden um den Auslieferungszustand wieder zu erlangen. Die ISO muss erstmal auf einen PC kopiert und anschließend entpackt werden.
+Sollte an irgendeinem Punkt etwas dermaßen kaputt gegangen sein, dass eine Rettung nicht mehr möglich ist, kann die auf der DVD hinterlegte ISO Datei auf die MikroSD Karte des Raspberry geflasht werden, um den Auslieferungszustand wieder zu erlangen. Die ISO muss erstmal auf einen PC kopiert und anschließend entpackt werden.
 \begin{code}
 sudo dd if=~/Path_to_Img.img of=/dev/mmcblk0 
 \end{code}
-\noindent\\Als OutputFile muss die MikroSD ausgewählt werden. welche vorher mit 
+\noindent\\Als OutputFile muss die MikroSD ausgewählt werden, welche vorher mit 
 \begin{code}
 lsblk
 \end{code}

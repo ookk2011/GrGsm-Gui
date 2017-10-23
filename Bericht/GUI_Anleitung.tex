@@ -6,17 +6,17 @@ Nachfolgend wird erläutert wie und wo im Code es möglich ist, diese Inhalte an
 
 Zuerst jedoch noch ein paar Erklärungen zu dem Aufbau unseres modifizierten grgsm-scanners.
 
-Zu Beginn des Programm, wird in der Main-Funktion unsere GUI aufgerufen und aufgebaut, während diese nun im Hintergrund auf einem Thread läuft, wird auf einem anderen Thread das Scanning fortgeführt.
+Zu Beginn des Programms wird in der Main-Funktion unsere GUI aufgerufen und aufgebaut. Während diese nun im Hintergrund auf einem Thread läuft, wird auf einem anderen Thread das Scanning fortgeführt.
 In den folgenden Abschnitten wird nun näher erläutert wie genau die GUI diese Informationen darstellt und den Scan-Vorgang kommuniziert.
 
 \section{Allgemeiner Aufbau der GUI}
 
 
-Starten des grgsm-scanner initiiert die GUI wie zu sehen in Abbildung:\ref{fig1}.
+Starten des grgsm-scanner initiiert die GUI wie in Abbildung:\ref{fig1} zu sehen ist.
 Das GUI-Fenster ist in zwei Felder aufgeteilt, ein kleineres Feld auf der linken Seite
 und ein größeres auf der Rechten.
 Im linken Feld werden die Kanäle dargestellt, welche nach und nach gescannt und hinzugefügt werden.
-Im rechten Feld werden zu Beginn Informationen zur Projektarbeit ausgegeben. Diese wird durch die Informationen von ausgewählten Kanälen überschrieben dazu jedoch später mehr.
+Im rechten Feld werden zu Beginn Informationen zur Projektarbeit ausgegeben. Diese wird durch die Informationen von ausgewählten Kanälen überschrieben, dazu jedoch später mehr.
 
 \mydennis{GUI_Window}{Standard Fenster GUI}{fig1}{0.0}{\textwidth}
 
@@ -26,14 +26,15 @@ Falls der Scan abgeschlossen ist, wird dies durch ein \textbf{--DONE!--} angezei
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % Vielleicht statt Done ---DONE!---, dass es wie auf dem Bild ist
+% Abkürzungen einfügen MCCC MNC etc...
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \mydennis{GUI_Done}{Abgeschlossener Scan}{fig2}{0.0}{\textwidth}
 
 
-\noindent Falls Kanäle schon gescannt wurden und somit links auftauchen, können diese ausgewählt werden um Informationen der einzelnen Parameter einzusehen.
-Unter den Parametern befinden sich der ARFCN, Frequenz, LAC, MCC, MNC, CID und Power.
+\noindent Falls Kanäle schon gescannt wurden und somit links auftauchen, können diese ausgewählt werden um die Informationen der einzelnen Parameter einzusehen.
+Unter den Parametern befinden sich der \ac{ARFCN}, die Frequenz, der \ac{LAC}, der \ac{MCC}, der \ac{MNC}, die \ac{CID} und die relative Empfangsleistung.
 Zusätzlich werden ein paar weitere Informationen ausgegeben (siehe Abbildung:\ref{fig3}).
 Sollte eine Maus angeschlossen sein können die Informationen auch durch eine Art Tooltip über mouse-hovering auf dem jeweiligen Kanal ausgegeben werden (siehe Abbildung:\ref{fig4}).
 
@@ -42,7 +43,7 @@ Sollte eine Maus angeschlossen sein können die Informationen auch durch eine Ar
 \mydennis{GUI_Tooltip}{Mouseover Tooltip}{fig4}{0.0}{\textwidth}
 
 
-\newpage Bei jedem Kanal ist es möglich durch einen kleinen Pfeil links daneben, diesen aufzurollen um die Parameter einzeln zu betrachten (siehe Abbildung:\ref{fig5}). Durch anklicken wieder auf die einzelnen Parameter wird die jeweilige Information dargestellt (siehe Abbildung:\ref{fig6}).
+\newpage Bei jedem Kanal ist es möglich durch einen kleinen Pfeil links daneben, diesen aufzurollen um die Parameter einzeln zu betrachten (siehe Abbildung:\ref{fig5}). Durch das Anklicken der einzelnen Parameter wird die jeweilige Information dargestellt (siehe Abbildung:\ref{fig6}).
 
 \mydennis{GUI_aufgeklappt}{GUI Ansicht angeklickt}{fig5}{0.0}{0.9\textwidth}
 
@@ -67,7 +68,7 @@ Sollte eine Maus angeschlossen sein können die Informationen auch durch eine Ar
 %Vielleicht hier noch schreiben wo die Datei zu finden ist 
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Die Titelseite, wie im vorherigen Kapitel bereits erwähnt, welche zu sehen ist am Programmstart, kann durch Änderungen im folgenden Programmcode (Listing: \ref{code1}) angepasst werden.
+Die Titelseite, wie im vorherigen Kapitel bereits erwähnt, welche am Programmstart zu sehen ist, kann durch Änderungen im folgenden Programmcode (Listing: \ref{code1}) angepasst werden.
 Die Zeilenangaben links verdeutlichen zusätzlich, wo man dies im Programmcode finden kann.
 
 \begin{code}[firstnumber=100,numbers=left,stepnumber=1, caption={Titelseite},captionpos=b,label={code1}]
@@ -84,7 +85,7 @@ self.text = QtGui.QLabel("\n"
 
 \subsection*{Anpassung der Parentnode}
 
-Die Informationen, welche angezeigt werden wenn man einen gefunden Kanal anklickt, können in den folgenden Codezeilen geändert werden (Listing: \ref{code2}). Bisher werden wie zu sehen ist die einzelnen Parameter mit Werten dargestellt und Angaben über Land und Betreiber der BTS. 
+Die Informationen, welche angezeigt werden wenn man einen gefundenen Kanal anklickt, können in den folgenden Codezeilen geändert werden (Listing: \ref{code2}). Bisher werden, wie zu sehen ist, die einzelnen Parameter mit Werten dargestellt und Angaben über Land und Betreiber der BTS. 
 
 \begin{code}[firstnumber=187,numbers=left,stepnumber=1, caption={Kanalinformation},captionpos=b,label={code2}]
 parent_item.setToolTip(column,"Der Kanal mit der " + Buffer_Channel.ARFCN + 
@@ -103,7 +104,7 @@ parent_item.setToolTip(column,"Der Kanal mit der " + Buffer_Channel.ARFCN +
 
 \subsection*{Anpassung der  Childnodes}
 
-Nun zum letzten Teil, dessen Text angepasst werden kann, den Parameterinformationen. Diese sind einzusehen, wenn ein Kanal aufklappt ist. Hier werden durch Auswählen der einzelnen Parameter die Informationen dargestellt, welche im Code \ref{code3} zu sehen sind. Die sieben Parameterinformationen werden in den verschiedenen If-Fällen definiert. 
+Nun zum letzten Teil, dessen Text angepasst werden kann, den Parameter-informationen. Diese sind einzusehen, wenn ein Kanal aufgeklappt ist. Hier werden durch das Auswählen der einzelnen Parameter die Informationen dargestellt, welche im Code \ref{code3} zu sehen sind. Die sieben Parameterinformationen werden in den verschiedenen If-Fällen definiert. 
 
 \begin{code}[firstnumber=204,numbers=left,stepnumber=1,caption={Parameterinformationen},captionpos=b,label={code3}]
 if k==0:

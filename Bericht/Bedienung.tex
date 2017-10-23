@@ -7,14 +7,14 @@
 \chapter{Bedienung des Handhelds}
 In diesem Kapitel finden Sie eine Bedienungsanleitung für das Handheld und Tipps für den Umgang mit diesem.
 
-Um einen gemeinsamen Betrachtungspunkt zu haben legen wir nun fest, dass man das Tablet im Querformat verwendet und "oben" die Seite beschreibt an der die USB Anschlüsse des Raspberrys zu sehen sind (vgl. Abbildung \ref{fig:Draufsicht-fig}). In diesem Fall finden wir die Ladebuchse rechts über die das Tablet sowohl geladen als auch stationär verwendet werden kann. HDMI, AUX und einen zweiten MikroUSB Anschluss zur Direktversorung beziehungsweise Überbrückung des Akkus, links. Der ON/OFF Schalter befindet sich auf der Unterseite rechts. Dieser ist leider wegen der Drucktoleranzen des 3D Druckers nicht all zu gut zugänglich. Deshalb empfiehlt es sich den Schalter mit einem spitzen Gegenstand zu betätigen (bspw. bietet sich hier die Antenne des DVB-T Sticks an).
+Um einen gemeinsamen Betrachtungspunkt zu haben wird festgelegt, dass man das Tablet im Querformat verwendet und "oben" die Seite beschreibt, an der die USB Anschlüsse des Raspberrys zu sehen sind (vgl. Abbildung \ref{fig:Draufsicht-fig}). In diesem Fall finden wir die Ladebuchse rechts, über die das Tablet sowohl geladen, als auch stationär verwendet werden kann. HDMI, AUX und einen zweiten MikroUSB Anschluss zur Direktversorung, beziehungsweise Überbrückung des Akkus, links. Der ON/OFF Schalter befindet sich auf der Unterseite rechts. Dieser ist leider wegen der Drucktoleranzen des 3D Druckers nicht all zu gut zugänglich. Deshalb empfiehlt es sich den Schalter mit einem spitzen Gegenstand zu betätigen (bspw. bietet sich hier die Antenne des DVB-T Sticks an).
 
 \mywidthpicture{Draufsicht}{Beschreibung der Anschlüsse}{fig:Draufsicht-fig}{0.0}{0.7\textwidth}
 \newpage
 
 \section{Stromversorgung}
 
-Verbaut ist ein 2,5 Ah LiPo Akku welcher über eine Adafruit Powerboost1000c Ladeelektronik geladen und betrieben wird. Die Elektronik ist sowohl dafür zuständig den Akku aufzuladen als auch bei der stationären Verwendung ein angeschlossenes USB Netzteil als Stromquelle zu Nutzen. Da der Normalstrom der aus dem Akku gezogen wird sich um die 1A bewegt kann es durchaus zu einer Unterversorgung kommen. Aufgrund dessen wird es nicht empfohlen bei höchster Displayhelligkeit den \ac{GSM} Suchlauf durchzuführen. Die Displaybeleuchtung dunkelt sich nach 10 Sekunden ab um diesen Fall der möglichen Unterversorgung auszuschließen. Dies kann in den Einstellungen wie in Abbildung \ref{Displayhelligkeit} geändert werden. 
+Verbaut ist ein 2,5 Ah LiPo Akku, welcher über eine Adafruit Powerboost1000c Ladeelektronik geladen und betrieben wird. Die Elektronik ist sowohl dafür zuständig den Akku aufzuladen, als auch bei der stationären Verwendung ein angeschlossenes USB Netzteil als Stromquelle zu Nutzen. Da der Normalstrom, der aus dem Akku gezogen wird, sich um die 1A bewegt, kann es durchaus zu einer Unterversorgung kommen. Aufgrund dessen wird es nicht empfohlen bei höchster Displayhelligkeit den \ac{GSM} Suchlauf durchzuführen. Die Displaybeleuchtung dunkelt sich nach 10 Sekunden ab, um den Fall der möglichen Unterversorgung auszuschließen. Dies kann in den Einstellungen wie in Abbildung \ref{fig:Dislpayhelligkeit-fig} geändert werden. 
 
 \mywidthpicture{Displayhelligkeit}{Einstellung der automatischen Helligkeitsregelung}{fig:Dislpayhelligkeit-fig}{0.0}{\textwidth}
 
@@ -25,7 +25,7 @@ Auf dem Desktop befinden sich die wichtigsten Shortcuts für den Gebrauch des \a
 \mywidthpicture{Desktop}{Ansicht des Dekstops}{fig:Desktop-fig}{0.0}{\textwidth}
 
 
-Das Touchscreen wurde so eingestellt, dass man nur einmal klicken muss um Programme auszuführen was eine Bedienung mit dem Finger erleichtert. Um eine einfache Einstellbarkeit der Displayhelligkeit zu realisieren haben wir auf dem Desktop Shortcuts hierfür implementiert. Die Stufen 10\%, 50\% und 100\% können ausgewählt werden. Sind andere Stufen gewünscht, so kann man die Displayhelligkeit durch ausführen des Befehls
+Der Touchscreen wurde so eingestellt, dass man nur einmal klicken muss, um Programme auszuführen was eine Bedienung mit dem Finger erleichtert. Um eine einfache Einstellbarkeit der Displayhelligkeit zu realisieren haben wir auf dem Desktop Shortcuts hierfür implementiert. Die Stufen 10\%, 50\% und 100\% können ausgewählt werden. Sind andere Stufen gewünscht, so kann man die Displayhelligkeit durch ausführen des Befehls
 
 \begin{verbatim}
 echo XXX > /sys/class/backlight/rpi_backlight/brightness
@@ -37,7 +37,7 @@ Ferner findet sich ein virtuelles Keyboard auf dem Desktop falls man mobil etwas
 
 \subsection{Den Scanner starten}
 
-Der \ac{GSM} Scanner hat ebenfalls ein Desktop Shortcut welches mit einem Klick die Suche nach \ac{GSM} Basisstationen ermöglicht. Um den Hintergrund zu verstehen werden im folgenden Kapitel die Einstellmöglichkeiten, mit denen ein Scan gestartet werden kann, erläutert. 
+Der \ac{GSM} Scanner hat ebenfalls ein Desktop Shortcut, welches mit einem Klick die Suche nach \ac{GSM} Basisstationen ermöglicht. Um den Hintergrund zu verstehen werden im folgenden Kapitel die Einstellmöglichkeiten, mit denen ein Scan gestartet werden kann, erläutert. 
 
 \section{Erweitern und Verändern}
 \subsection{Startup}
@@ -59,15 +59,15 @@ Options:
                         configuration, cell ARFCN's, neighbour ARFCN's
                         
                    
-grgsm_scanner -g 50 -p 29 
+grgsm_scanner -p 29 
 \end{code}
-\noindent\\Mit diesen Übergabeparametern wird der \ac{GSM} Scanner aufgerufen und sucht im default BAND GSM900 das Netz von 925 Mhz bis 960 Mhz ab. Dies entspricht dem E-GSM 900 Netz. Ein Gain von 50 dB ist der Maximalwert und ermöglicht somit die größte "Ausbeute" was die Ergebnisliste angeht. Der Offset des Quarzes bei Betriebstemperatur wurde in Kapitel \ref{Kal} durch eine Kalibierung des DVB-T Sticks berechnet und ist immer mit anzugeben. 
+\noindent\\Mit diesen Übergabeparametern wird der \ac{GSM} Scanner aufgerufen und sucht im default BAND GSM900 das Netz von 925 Mhz bis 960 Mhz ab. Dies entspricht dem E-GSM 900 Netz. Der Offset des Quarzes bei Betriebstemperatur wurde in Kapitel \ref{Kal} durch eine Kalibierung des DVB-T Sticks berechnet und ist immer mit anzugeben. 
 
 Das zugehörige Desktop Shortcut, wie auch die Shortcuts zur Helligkeitsregulierung, führen Shell Skripte aus, welche unter 
 \begin{code}
 /root/GrGsm-Gui
 \end{code}
-\noindent\\hinterlegt sind. Hier kann man eingreifen falls es gewünscht ist etwas zu ändern. Zum Beispiel wenn ein neuer Stick mit einem anderen Quarz Offset verwendet werden soll. Am besten öffnet man die Skripte über das Terminal mit "nano" da sonst kein Textverarbeitungsprogramm installiert ist. 
+\noindent\\hinterlegt sind. Hier kann man eingreifen falls es gewünscht ist etwas zu ändern, zum Beispiel wenn ein neuer Stick mit einem anderen Quarz Offset verwendet werden soll. Am besten öffnet man die Skripte über das Terminal mit "nano" da sonst kein Textverarbeitungsprogramm installiert ist. 
 
 Alle weiteren von uns geschriebenen Komponenten sind ebenfalls im Ordner 
 \begin{code}
@@ -82,7 +82,7 @@ git pull
 
 \subsection{Autostartup}
 
-Nach dem Anschalten am ON/OFF Schalter auf der Unterseite des Handhelds fährt dieses hoch ohne, dass eine Anmeldung erforderlich ist. Sollte dies geändert werden, so müssen zwei Befehle in der Datei lightdm.conf auskommentiert werden. 
+Nach dem Anschalten am ON/OFF Schalter auf der Unterseite des Handhelds fährt dieses hoch. Eine Anmeldung ist nicht erforderlich. Soll dies geändert werden, so müssen zwei Befehle in der Datei lightdm.conf auskommentiert werden. 
 \begin{code}
 cd /etc/lightdm
 nano lightdm.conf

@@ -48,7 +48,8 @@ import re
 
 flag = 1
 
-fname = "output.txt"
+#fname = "/root/Desktop/scan_output.txt"
+fname = "scan_output.txt"
 
 def file_len():
     i=0
@@ -58,7 +59,7 @@ def file_len():
     return i + 1
 
 ####################
-myfile = open("output.txt", "w")
+myfile = open(fname, "w")
 myfile.close()
 ####################
 
@@ -99,9 +100,9 @@ class Window(QtGui.QWidget):
 
 		self.text = QtGui.QLabel("\n"
 		                         " \t\t   GrGsm Scanner GUI\n\n\n"
-		                         " Mit Hilfe der GNURADIO Bloecke \"GrGsm\" von Piotr Krysik\n"
+		                         " Mit Hilfe der GNU Radio Bloecke \"gr-gsm\" von Piotr Krysik\n"
 		                         " wird der BCCH umliegender GSM BTS ausgelesen und dargestellt\n\n"
-		                         " Ein Klick auf den gewuenschten Kanal links zeigt die Parameter an\n\n\n\n\n\n\n\n\n\n\n"
+		                         " Ein Klick auf den gewuenschten Kanal links zeigt die Parameter an\n\n\n\n\n\n\n\n\n\n"
 		                         " Projektarbeit unter Prof. Litzenburger im SoSe 2017\n"
 		                         " von Dennis Dette und Christian Kobiela\n\n"
 		                         , self.right)
@@ -134,7 +135,7 @@ class Window(QtGui.QWidget):
 	    elif " 2" in content : return "Vodafone"
 	    elif " 3" in content : return "Telefonica (ehem. E-Plus)"
 	    elif "10" in content: return "DB Telematic"
-	    else: return "Unknown"
+	    else: return "None"
 	    
 	
 	def find_country(self, MCC):
@@ -168,12 +169,12 @@ class Window(QtGui.QWidget):
 		if content:
 
 ######## Add TreeRoot
-		        Buffer_Channel = Channel(content[0 ], 
-		                                 content[1 ], 
-		                                 content[2 ], 
-		                                 content[3 ],
-		                                 content[4 ], 
-		                                 content[5 ], 
+		        Buffer_Channel = Channel(content[0], 
+		                                 content[1], 
+		                                 content[2], 
+		                                 content[3],
+		                                 content[4], 
+		                                 content[5], 
 		                                 content[6] )
 
 			parent_item = self.addParent(parent, column, "Chan. "
@@ -192,7 +193,7 @@ class Window(QtGui.QWidget):
 			                        + " " +Buffer_Channel.MCC + " \t\tMobile Country Code\n" 
 			                        + " " +Buffer_Channel.MNC + " \t\tMobile Network Code\n"
 			                        + " " +Buffer_Channel.CID + " \t\tCell Identification\n"			                        
-			                        + " " +Buffer_Channel.PWR+ " \t\tPower\n\n\n"
+			                        + " " +Buffer_Channel.PWR+ " \t\tRelative Power in dBm\n\n\n"
 			                        + " Laut " + Buffer_Channel.MNC + " ist der Betreiber " + Betreiber
 			                        + "\n Laut " + Buffer_Channel.MCC + " steht die BTS in " + str(Land)
 			                        )
@@ -235,7 +236,10 @@ class Window(QtGui.QWidget):
 							"\n\n Legende:\n 01: Telekom Deutschland\n 02: Vodafone\n 03: Telefonica (ehem. E-Plus)\n 10: DB Telematic")
 				elif k==6:
 					item.setToolTip(column, " Power:\n\n " + Buffer_Channel.PWR + 
-					                "\n\n GSM needs at least a Power of -102dBm " )		
+					                "\n\n GSM needs at least a Power of -102dBm "+
+					                "\n\n Because we use a RTLSDR Stick the displayed Power ist not"+
+					                "\na reliable Value. You can only see it as a relative level"+
+					                "\nbetween the found BTS")		
 
 			self.treeWidget.addTopLevelItem(item)
 			
@@ -530,8 +534,11 @@ class channel_info(object):
 
 class _do_scan(QtCore.QThread):
     
+    found_list = []
+    temp_list = []
+    
     trigger = QtCore.pyqtSignal()
-    trigger2 = QtCore.pyqtSignal(channel_info)
+    trigger2 = QtCore.pyqtSignal(list)
         
     def __init__(self, samp_rate, band, speed, ppm, gain, args, prn = None):
 
@@ -591,7 +598,7 @@ class _do_scan(QtCore.QThread):
 		    numpy.array(range(int(-numpy.floor(channels_num / 2)), int(numpy.floor((channels_num + 1) / 2)))) * 2e5)
 		detected_c0_channels = scanner.gsm_extract_system_info.get_chans()
     
-		found_list = []
+
     
 		if detected_c0_channels:
 		    chans = numpy.array(scanner.gsm_extract_system_info.get_chans())
@@ -604,7 +611,7 @@ class _do_scan(QtCore.QThread):
 		    ccch_confs = numpy.array(scanner.gsm_extract_system_info.get_ccch_conf())
 		    powers = numpy.array(scanner.gsm_extract_system_info.get_pwrs())
 		    	    
-    
+		    self.found_list = []
     
 		    for i in range(0, len(chans)):
 			cell_arfcn_list = scanner.gsm_extract_system_info.get_cell_arfcns(chans[i])
@@ -613,7 +620,7 @@ class _do_scan(QtCore.QThread):
 			info = channel_info(grgsm.arfcn.downlink2arfcn(found_freqs[i]), found_freqs[i],
 			                    cell_ids[i], lacs[i], mccs[i], mncs[i], ccch_confs[i], powers[i],
 			                    neighbour_list, cell_arfcn_list)
-			found_list.append(info)
+			self.found_list.append(info)
 
 			
     
@@ -626,11 +633,13 @@ class _do_scan(QtCore.QThread):
 		os.close(null_fds[0])
 		os.close(null_fds[1])
 		if prn:
-		    prn(found_list)
-#		    for info in sorted(found_list):
-	#		self.trigger2.emit(info)
+		    #prn(found_list)
+		    #for info in sorted(found_list):
+		    self.temp_list = self.found_list
+		    self.trigger2.emit(self.temp_list)
+		    self.found_list = []
 		    
-		signallist.extend(found_list)
+		signallist.extend(self.found_list)
 		
 
 		
@@ -695,7 +704,7 @@ def argument_parser():
 	
 
 def main(options = None):
-    info = channel_info
+    #info = channel_info
     
     newFont=QtGui.QFont("Times", 13 )
     app = QtGui.QApplication(sys.argv)
@@ -715,13 +724,13 @@ def main(options = None):
     if (options.samp_rate / 0.2e6) % 2 != 0:
         parser.error("Invalid sample rate. Sample rate must be an even numer * 0.2e6")
 	
-    window.get_gain(options.gain)
+    #window.get_gain(options.gain)
 
     def printfunc(found_list):
         for info in sorted(found_list):
             print info
 	    #############
-	    with open("output.txt", "a") as myfile:
+	    with open(fname, "a") as myfile:
 	    	myfile.write(str(info) + "\n")
 		myfile.close()
 		
@@ -737,16 +746,16 @@ def main(options = None):
     scan_thread.start()
     
        
-    scan_thread.trigger.connect(lambda:  
-                                window.changeTitle())
-    #scan_thread.trigger2.connect(lambda: window.addItems(window.treeWidget.invisibleRootItem(), info))
+    scan_thread.trigger.connect(lambda: window.changeTitle())
     
+    scan_thread.trigger2.connect(lambda: printfunc(scan_thread.temp_list))
 
-    #window = Window()
+    window = Window()
     window.show() 	
     sys.exit(app.exec_())     
 
 
 if __name__ == '__main__':
 	main()
+
 
