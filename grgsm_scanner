@@ -48,7 +48,7 @@ import re
 
 flag = 1
 
-fname = "/root/Desktop/scan_output.txt"
+fname = "scan_output.txt"
 #fname = "scan_output.txt"
 
 def file_len():
